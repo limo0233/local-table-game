@@ -1,0 +1,38 @@
+# IDE and operating-system files
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Local Android/Gradle configuration and caches
+local.properties
+.gradle/
+.kotlin/
+build/
+**/build/
+
+# Node/Vite dependencies and generated output
+web/node_modules/
+web/dist/
+web/dist-*/
+web/*.tsbuildinfo
+web/vite.config.js
+web/vite.config.d.ts
+npm-debug.log*
+yarn-error.log*
+
+# Signing material and generated packages must not be committed
+*.jks
+*.keystore
+*.p12
+*.pem
+*.key
+*.apk
+*.aab
+*.zip
+
+# Temporary files
+*.log
+*.tmp
+*.bak

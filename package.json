@@ -1,0 +1,12 @@
+{
+  "name": "lan-board-game-workspace",
+  "private": true,
+  "scripts": {
+    "web:dev": "npm --prefix web run dev",
+    "web:test": "npm --prefix web run test",
+    "web:build": "npm --prefix web run build",
+    "sync:web": "npm run web:build && node scripts/sync-web.mjs",
+    "test": "npm run web:test"
+  }
+}
+

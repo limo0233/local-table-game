@@ -12,11 +12,16 @@ android {
         applicationId = "com.lanboardgame.host"
         minSdk = 26
         targetSdk = 35
-        versionCode = 8
-        versionName = "0.5.0"
+        versionCode = 9
+        versionName = "0.6.0"
     }
 
-    buildFeatures { buildConfig = true }
+    buildFeatures { buildConfig = false }
+
+    dependenciesInfo {
+        includeInApk = false
+        includeInBundle = false
+    }
 
     buildTypes {
         getByName("release") {
@@ -46,7 +51,6 @@ android {
 
 dependencies {
     implementation(project(":server-core"))
-    implementation("androidx.core:core-ktx:1.15.0")
     implementation("org.nanohttpd:nanohttpd-websocket:2.3.1")
     implementation("com.google.zxing:core:3.5.3")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")

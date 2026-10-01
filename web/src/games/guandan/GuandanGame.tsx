@@ -1,7 +1,7 @@
 import { CircleHelp, Radio, Send, SkipForward, Users } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { GameRulesModal } from '../../components/GameRulesModal'
-import { PlayerRing } from '../../components/PlayerRing'
+import { LandscapeHint } from '../../components/LandscapeHint'
 import { RoomBackButton } from '../../components/RoomBackButton'
 import type { GuandanCard, GuandanCombinationType, GuandanView, RoomView, Session } from '../../types'
 
@@ -43,6 +43,8 @@ export function GuandanGame({ room, session, view, send, onLeave }: Props) {
 
   const teamLabel = (index: number) => index % 2 === 0 ? '一队' : '二队'
   const rankingByPlayer = new Map(view.public.ranking.map(item => [item.playerId, item.position]))
+  const mySeatIndex = Math.max(0, room.players.findIndex(player => player.id === session?.playerId))
+  const seatPosition = (index: number) => ['self', 'right', 'partner', 'left'][(index - mySeatIndex + 4) % 4]
   const tribute = view.public.tribute
   const submitTribute = () => {
     if (selected.length !== 1) return
@@ -61,13 +63,23 @@ export function GuandanGame({ room, session, view, send, onLeave }: Props) {
         <div className="room-header-leading"><RoomBackButton isHost={isHost} onLeave={onLeave} /><div><h1>掼蛋</h1><span><Radio size={13} />房间 {room.roomId}</span></div></div>
         <div className="game-header-actions"><div className="guandan-turn"><Users size={15} />{isMyTurn ? '轮到你出牌' : `${playerName(view.public.currentPlayerId)} 出牌`}</div><button type="button" aria-label="掼蛋规则" title="掼蛋规则" onClick={() => setShowRules(true)}><CircleHelp size={17} /></button></div>
       </header>
+      <LandscapeHint />
 
       <div className="guandan-scorebar"><span>一队 <strong>{view.public.teamScores[0] ?? 0}</strong></span><span>二队 <strong>{view.public.teamScores[1] ?? 0}</strong></span><small>第 {view.public.roundNumber} 局 · 打 {view.public.currentLevel}</small></div>
 
-      <PlayerRing className="guandan-table game-player-ring" ariaLabel="掼蛋牌桌玩家座位" center={<div className="guandan-center"><span>{view.public.phase === 'FINISHED' ? (view.public.matchWinnerTeam != null ? `第 ${view.public.matchWinnerTeam + 1} 队赢得整场比赛` : `第 ${(view.public.winnerTeam ?? 0) + 1} 队本局获胜`) : view.public.phase === 'TRIBUTE' ? '进贡与还贡' : isMyTurn ? '请出牌' : '等待出牌'}</span>
+      <div className="guandan-seat-table" aria-label="掼蛋四人搭档牌桌">
+        <div className="guandan-partner-line" aria-hidden="true" />
+        <div className="guandan-center"><span>{view.public.phase === 'FINISHED' ? (view.public.matchWinnerTeam != null ? `第 ${view.public.matchWinnerTeam + 1} 队赢得整场比赛` : `第 ${(view.public.winnerTeam ?? 0) + 1} 队本局获胜`) : view.public.phase === 'TRIBUTE' ? '进贡与还贡' : isMyTurn ? '请出牌' : '等待出牌'}</span>
           {view.public.lastPlay ? <div className="last-play"><small>{playerName(view.public.lastPlay.playerId)} · {combinationLabel(view.public.lastPlay.type)}</small><div>{view.public.lastPlay.cards.map(card => <GuandanCardView card={card} small key={card.id} />)}</div></div> : <small>新一轮</small>}
           {view.public.lastEvent ? <small className="guandan-event">{view.public.lastEvent}</small> : null}
-        </div>} players={room.players.map((player, index) => ({ id: player.id, nickname: player.nickname, isMe: player.id === session?.playerId, connected: player.connected, current: player.id === view.public.currentPlayerId, status: `${teamLabel(index)} · ${view.public.handSizes[player.id] ?? 0} 张${rankingByPlayer.has(player.id) ? ` · 第${rankingByPlayer.get(player.id)}名` : ''}`, badge: player.id === view.public.currentPlayerId ? '当前行动' : undefined }))} />
+        </div>
+        {room.players.map((player, index) => <div className={`guandan-seat ${seatPosition(index)} ${player.id === view.public.currentPlayerId ? 'current' : ''} ${player.connected ? '' : 'offline'} ${view.public.passedPlayerIds.includes(player.id) ? 'passed' : ''}`} key={player.id}>
+          <span className="guandan-seat-avatar">{player.nickname.slice(0, 1)}</span>
+          <strong>{player.id === session?.playerId ? '你' : player.nickname}</strong>
+          <small>{teamLabel(index)} · {view.public.handSizes[player.id] ?? 0} 张</small>
+          {rankingByPlayer.has(player.id) ? <b>第 {rankingByPlayer.get(player.id)} 名</b> : view.public.passedPlayerIds.includes(player.id) ? <b>已过牌</b> : player.id === view.public.currentPlayerId ? <b>当前行动</b> : null}
+        </div>)}
+      </div>
 
       <section className="guandan-hand-panel">
         <div className="guandan-hand-heading"><span>我的手牌 <strong>{view.myHand.length}</strong></span><small>{view.canPlay ? '点击选择要出的牌' : view.canTribute ? '请选择自己最大的牌进贡' : view.canReturnTribute ? '请选择一张牌还贡' : '等待其他玩家操作'}</small></div>

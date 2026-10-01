@@ -1,7 +1,8 @@
 import { CircleHelp, Crosshair, Eye, RotateCcw, Timer } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import type { CSSProperties } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { GameRulesModal } from '../../components/GameRulesModal'
-import { PlayerRing } from '../../components/PlayerRing'
+import { LandscapeHint } from '../../components/LandscapeHint'
 import { RoomBackButton } from '../../components/RoomBackButton'
 import { crossfireRoleNames } from '../roleNames'
 import type { CrossfireView, RoomView, Session } from '../../types'
@@ -36,6 +37,13 @@ export function CrossfireGame({ room, session, view, send, onLeave }: Props) {
 
   const phaseLabel = ({ INITIAL_VIEW: '查看初始身份', INTEL_PASS: '传递情报', SHUFFLE: '确认混洗', DISCUSSION: '讨论阶段', TARGETING: '秘密选目标', RESOLVE: '统一结算', GAME_OVER: '游戏结束' } as const)[view.public.phase]
   const formatShuffleGroup = (ids: string[]) => ids.map(playerLabel).join(' + ')
+  const visualSeats = useMemo(() => {
+    const ids = view.public.seatOrder.length ? view.public.seatOrder : room.players.map(player => player.id)
+    const me = Math.max(0, ids.indexOf(session?.playerId ?? ''))
+    return [...ids.slice(me), ...ids.slice(0, me)]
+  }, [room.players, session?.playerId, view.public.seatOrder])
+  const playerById = useMemo(() => new Map(room.players.map(player => [player.id, player])), [room.players])
+  const shuffleSet = new Set(view.public.currentShuffleGroup)
 
   return (
     <section className="new-game-screen crossfire-screen screen-pad">
@@ -43,8 +51,27 @@ export function CrossfireGame({ room, session, view, send, onLeave }: Props) {
         <div className="room-header-leading"><RoomBackButton isHost={isHost} onLeave={onLeave} /><div><h1>Crossfire</h1><span>房间 {room.roomId}</span></div></div>
         <div className="game-header-actions"><span className="new-game-phase">{phaseLabel}</span><button type="button" aria-label="Crossfire规则" onClick={() => setShowRules(true)}><CircleHelp size={17} /></button></div>
       </header>
+      <LandscapeHint />
 
-      <PlayerRing className="game-player-ring crossfire-player-ring" ariaLabel="Crossfire玩家座位" center={<div className="player-ring-status"><strong>{phaseLabel}</strong><small>{view.public.phase === 'TARGETING' ? `已锁定 ${view.public.targetsSubmitted}/${room.players.length}` : '围绕牌桌讨论与行动'}</small></div>} players={room.players.map(player => ({ id: player.id, nickname: player.nickname, isMe: player.id === session?.playerId, connected: player.connected, current: view.public.phase === 'TARGETING' && !view.public.lockedPlayers.includes(player.id), status: view.public.lockedPlayers.includes(player.id) ? '已锁定' : '讨论中', badge: player.id === session?.playerId ? '你' : undefined }))} />
+      <div className={`crossfire-intel-map phase-${view.public.phase.toLowerCase()}`} aria-label="Crossfire真实座次情报环">
+        <div className="crossfire-orbit" aria-hidden="true"><i /><i /><i /></div>
+        <div className="crossfire-map-center">
+          <Crosshair size={24} />
+          <strong>{phaseLabel}</strong>
+          {view.public.phase === 'SHUFFLE' ? <small>第 {view.public.shuffleGroupIndex + 1}/{view.public.shuffleGroupCount} 组 · 三人身份混洗</small> : view.public.phase === 'TARGETING' ? <small>已锁定 {view.public.targetsSubmitted}/{room.players.length}</small> : <small>按真实座次环形排列</small>}
+          {view.public.phase === 'SHUFFLE' ? <span>{view.public.currentShuffleGroup.map(playerLabel).join(' / ')}</span> : null}
+        </div>
+        {visualSeats.map((id, index) => {
+          const player = playerById.get(id)
+          if (!player) return null
+          const selectable = view.canSubmitTarget && view.targetIds.includes(id)
+          const angle = (index / visualSeats.length) * 360 + 90
+          return <button type="button" className={`crossfire-map-seat ${shuffleSet.has(id) ? 'in-shuffle' : ''} ${id === view.public.dealerPlayerId ? 'dealer' : ''} ${view.public.lockedPlayers.includes(id) ? 'locked' : ''} ${id === targetId ? 'selected' : ''} ${player.connected ? '' : 'offline'}`} style={{ '--crossfire-angle': `${angle}deg` } as CSSProperties} disabled={!selectable} onClick={() => setTargetId(id)} key={id}>
+            <span>{player.nickname.slice(0, 1)}</span><strong>{id === session?.playerId ? '你' : player.nickname}</strong>
+            <small>{id === view.public.dealerPlayerId ? '庄家' : view.public.lockedPlayers.includes(id) ? '已锁定' : shuffleSet.has(id) ? '本组混洗' : `${view.public.seatOrder.indexOf(id) + 1}号`}</small>
+          </button>
+        })}
+      </div>
       <div className="new-game-private crossfire-identity-panel">
         <div className="identity-info-section"><span>初始身份</span><strong><Eye size={16} />{crossfireRoleNames[view.initialRole]}</strong></div>
         {view.seenRoles.length ? <div className="identity-info-section"><span>你曾看到</span><div className="intel-list">{view.seenRoles.map((intel, index) => <span key={`${intel.sourcePlayerId}-${index}`}>{playerLabel(intel.sourcePlayerId)}：{crossfireRoleNames[intel.role]}</span>)}</div></div> : null}
@@ -57,7 +84,7 @@ export function CrossfireGame({ room, session, view, send, onLeave }: Props) {
       {view.public.phase === 'INTEL_PASS' ? <ActionCard title="情报传递完成" text="系统已按座位方向记录你看过的角色，请确认进入混洗阶段。" button={view.canConfirmIntel ? '确认情报' : '已确认，等待其他玩家'} disabled={!view.canConfirmIntel} onClick={() => send('crossfire:confirm_intel')} /> : null}
       {view.public.phase === 'SHUFFLE' ? <ActionCard title={`确认第 ${view.public.shuffleGroupIndex + 1}/${view.public.shuffleGroupCount} 组混洗`} text={`本组：${view.public.currentShuffleGroup.map(playerLabel).join(' / ')}。三名玩家都确认后才会执行一次身份混洗。`} button={view.canConfirmShuffle ? '确认混洗' : '等待本组玩家'} disabled={!view.canConfirmShuffle} onClick={() => send('crossfire:confirm_shuffle')} /> : null}
       {view.public.phase === 'DISCUSSION' ? <div className="new-game-action-card"><h2><Timer size={18} />讨论阶段</h2><p>面对面讨论并推理身份，剩余时间 {formatTime(remaining)}。</p>{isHost ? <button className="primary-button" onClick={() => send('crossfire:start_targeting')}><Crosshair size={18} />结束讨论，开始选目标</button> : <p className="waiting-action">等待房主结束讨论…</p>}</div> : null}
-      {view.public.phase === 'TARGETING' ? <div className="new-game-action-card"><h2>秘密选择射击目标</h2><p>已锁定 {view.public.targetsSubmitted}/{room.players.length} 人，其他人的目标不会提前公开。</p>{view.canSubmitTarget ? <><select className="new-game-select" value={targetId} onChange={event => setTargetId(event.target.value)}><option value="">选择目标</option>{view.targetIds.map(id => <option value={id} key={id}>{playerName(id)}</option>)}</select><button className="primary-button" disabled={!targetId} onClick={() => send('crossfire:target', { targetId })}>锁定目标</button></> : <p className="waiting-action">你已锁定，等待其他玩家…</p>}</div> : null}
+      {view.public.phase === 'TARGETING' ? <div className="new-game-action-card crossfire-target-panel"><h2>秘密选择射击目标</h2><p>{targetId ? `目标：${playerName(targetId)}。确认前可以重新点击座位。` : `已锁定 ${view.public.targetsSubmitted}/${room.players.length} 人，直接点击上方座位选择。`}</p>{view.canSubmitTarget ? <button className="primary-button" disabled={!targetId} onClick={() => send('crossfire:target', { targetId })}>锁定目标</button> : <p className="waiting-action">你已锁定，等待其他玩家…</p>}</div> : null}
 
       {view.public.phase === 'GAME_OVER' ? <div className="new-game-result final"><h2>{view.public.winnerTeam === 'ASSASSIN' ? '刺客阵营达成目标' : '特工阵营守住 VIP'}</h2><div className="role-reveal-list">{Object.entries(view.public.revealedRoles).map(([id, role]) => <span key={id}>{playerName(id)}：{crossfireRoleNames[role]}</span>)}</div>{isHost ? <button className="primary-button" onClick={() => send('game:restart')}><RotateCcw size={17} />返回大厅</button> : null}</div> : null}
       {showRules ? <GameRulesModal game="CROSSFIRE" onClose={() => setShowRules(false)} /> : null}

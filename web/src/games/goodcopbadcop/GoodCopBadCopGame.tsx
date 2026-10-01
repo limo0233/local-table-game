@@ -1,7 +1,7 @@
 import { CircleHelp, Crosshair, Eye, RotateCcw, Search, Shield, Target } from 'lucide-react'
 import { useState } from 'react'
 import { GameRulesModal } from '../../components/GameRulesModal'
-import { PlayerRing } from '../../components/PlayerRing'
+import { LandscapeHint } from '../../components/LandscapeHint'
 import { RoomBackButton } from '../../components/RoomBackButton'
 import { goodCopTeamNames, integrityTypeNames } from '../roleNames'
 import type { GoodCopTeam, GoodCopView, IntegrityType, RoomView, Session } from '../../types'
@@ -24,6 +24,12 @@ export function GoodCopBadCopGame({ room, session, view, send, onLeave }: Props)
   const teamName = (team: GoodCopTeam) => goodCopTeamNames[team]
   const activeTargets = view.targetIds
   const currentName = playerName(view.public.currentPlayerId)
+  const canChooseTarget = view.canInvestigate || view.canAim
+  const chooseTarget = (id: string) => {
+    if (!canChooseTarget || !activeTargets.includes(id)) return
+    setTargetId(id)
+    setCardIndex(0)
+  }
 
   return (
     <section className="new-game-screen goodcop-screen screen-pad">
@@ -31,12 +37,29 @@ export function GoodCopBadCopGame({ room, session, view, send, onLeave }: Props)
         <div className="room-header-leading"><RoomBackButton isHost={isHost} onLeave={onLeave} /><div><h1>Good Cop Bad Cop</h1><span>房间 {room.roomId}</span></div></div>
         <div className="game-header-actions"><span className="new-game-phase">{view.public.phase === 'GAME_OVER' ? '游戏结束' : view.public.phase === 'ACTION_RESOLVE' ? '处理射击' : '行动阶段'}</span><button type="button" aria-label="Good Cop Bad Cop规则" onClick={() => setShowRules(true)}><CircleHelp size={17} /></button></div>
       </header>
+      <LandscapeHint />
 
-      <PlayerRing className="game-player-ring goodcop-player-ring" ariaLabel="Good Cop Bad Cop玩家座位" center={<div className="player-ring-status"><strong>{view.public.phase === 'GAME_OVER' ? '游戏结束' : view.public.phase === 'ACTION_RESOLVE' ? '处理射击' : '行动阶段'}</strong><small>当前：{currentName}</small></div>} players={room.players.map(player => ({ id: player.id, nickname: player.nickname, isMe: player.id === session?.playerId, connected: player.connected, current: player.id === view.public.currentPlayerId, status: view.public.eliminated.includes(player.id) ? '淘汰' : view.public.wounded.includes(player.id) ? '受伤' : player.id === view.public.currentPlayerId ? '当前行动' : '等待', badge: `${view.public.hiddenIntegrityCounts[player.id] ?? 0} 张` }))} />
+      <div className="goodcop-case-board">
+        <div className="goodcop-case-status"><span>案件行动</span><strong>{view.public.phase === 'ACTION_RESOLVE' ? '处理射击' : `当前：${currentName}`}</strong>{view.public.gunHolder ? <small><Crosshair size={13} />{playerName(view.public.gunHolder)} 持枪{view.public.aimTarget ? ` → ${playerName(view.public.aimTarget)}` : ''}</small> : <small>枪械尚未被领取</small>}</div>
+        <div className="goodcop-dossier-grid" aria-label="玩家公开档案">
+          {room.players.map(player => {
+            const revealed = view.public.revealedIntegrity[player.id] ?? []
+            const hidden = view.public.hiddenIntegrityCounts[player.id] ?? 0
+            const eliminated = view.public.eliminated.includes(player.id)
+            const wounded = view.public.wounded.includes(player.id)
+            const selectable = canChooseTarget && activeTargets.includes(player.id)
+            return <button type="button" className={`goodcop-dossier ${player.id === view.public.currentPlayerId ? 'current' : ''} ${player.id === targetId ? 'selected' : ''} ${eliminated ? 'eliminated' : ''} ${player.connected ? '' : 'offline'}`} disabled={!selectable} onClick={() => chooseTarget(player.id)} key={player.id}>
+              <header><span>{player.nickname.slice(0, 1)}</span><div><strong>{player.id === session?.playerId ? '你' : player.nickname}</strong><small>{eliminated ? '已淘汰' : wounded ? '受伤' : player.id === view.public.gunHolder ? '持枪' : player.id === view.public.currentPlayerId ? '当前行动' : '在场'}</small></div>{view.public.equipmentCounts[player.id] ? <b><Shield size={11} />{view.public.equipmentCounts[player.id]}</b> : null}</header>
+              <div className="public-integrity-row">{revealed.map((role, index) => <i className="revealed" key={`revealed-${index}`}>{roleName(role)}</i>)}{Array.from({ length: hidden }, (_, index) => <i key={`hidden-${index}`}>?</i>)}</div>
+              {view.public.aimTarget === player.id ? <em><Target size={11} />被瞄准</em> : null}
+            </button>
+          })}
+        </div>
+      </div>
       <div className="new-game-private"><strong><Eye size={16} />你的阵营：{teamName(view.myTeam)}</strong><div className="integrity-cards">{view.myIntegrity.map(card => <span className={card.revealed ? 'revealed' : 'hidden'} key={card.id}>{card.revealed ? roleName(card.type) : '隐藏身份牌'}</span>)}</div>{view.myEquipment.length ? <small><Shield size={13} />装备：{view.myEquipment.map(item => item === 'SHIELD' ? '防弹盾' : item).join('、')}</small> : null}{view.investigationResult ? <p className="investigation-note">最近调查结果：{roleName(view.investigationResult.type)}（目标身份牌仍保持隐藏）</p> : null}</div>
 
-      {view.public.phase === 'TURN' && view.public.currentPlayerId === session?.playerId ? <div className="new-game-action-card"><h2>轮到你行动</h2><div className="new-game-inline"><select className="new-game-select" value={targetId} onChange={event => setTargetId(event.target.value)}><option value="">选择玩家</option>{activeTargets.map(id => <option value={id} key={id}>{playerName(id)}</option>)}</select><select className="new-game-select compact" value={cardIndex} onChange={event => setCardIndex(Number(event.target.value))}><option value={0}>第 1 张隐藏牌</option><option value={1}>第 2 张隐藏牌</option><option value={2}>第 3 张隐藏牌</option></select></div><div className="new-game-button-grid">{view.canInvestigate ? <button className="secondary-button" disabled={!targetId} onClick={() => send('goodcop:investigate', { targetId, cardIndex })}><Search size={16} />调查</button> : null}{view.canEquip ? <button className="secondary-button" onClick={() => send('goodcop:equip')}><Shield size={16} />装备</button> : null}{view.canArm ? <button className="primary-button" onClick={() => send('goodcop:arm')}><Crosshair size={16} />武装</button> : null}</div></div> : null}
-      {view.public.phase === 'ACTION_RESOLVE' && view.canAim ? <div className="new-game-action-card"><h2><Target size={18} />选择瞄准目标</h2><select className="new-game-select" value={targetId} onChange={event => setTargetId(event.target.value)}><option value="">选择目标</option>{activeTargets.map(id => <option value={id} key={id}>{playerName(id)}</option>)}</select><button className="primary-button" disabled={!targetId} onClick={() => send('goodcop:aim', { targetId })}>确认瞄准</button></div> : null}
+      {view.public.phase === 'TURN' && view.public.currentPlayerId === session?.playerId ? <div className="new-game-action-card goodcop-action-dock"><h2>轮到你行动</h2><p>{targetId ? `已选择 ${playerName(targetId)}` : '调查时直接点击上方玩家档案。'}</p>{view.canInvestigate && targetId ? <div className="integrity-index-picker">{Array.from({ length: view.public.hiddenIntegrityCounts[targetId] ?? 0 }, (_, index) => <button type="button" className={cardIndex === index ? 'selected' : ''} onClick={() => setCardIndex(index)} key={index}>隐藏牌 {index + 1}</button>)}</div> : null}<div className="new-game-button-grid">{view.canInvestigate ? <button className="secondary-button" disabled={!targetId} onClick={() => send('goodcop:investigate', { targetId, cardIndex })}><Search size={16} />调查</button> : null}{view.canEquip ? <button className="secondary-button" onClick={() => send('goodcop:equip')}><Shield size={16} />装备</button> : null}{view.canArm ? <button className="primary-button" onClick={() => send('goodcop:arm')}><Crosshair size={16} />武装</button> : null}</div></div> : null}
+      {view.public.phase === 'ACTION_RESOLVE' && view.canAim ? <div className="new-game-action-card goodcop-action-dock"><h2><Target size={18} />选择瞄准目标</h2><p>{targetId ? `已选择 ${playerName(targetId)}` : '直接点击上方玩家档案选择目标。'}</p><button className="primary-button" disabled={!targetId} onClick={() => send('goodcop:aim', { targetId })}>确认瞄准</button></div> : null}
       {view.public.phase === 'ACTION_RESOLVE' && view.canShoot ? <div className="new-game-action-card"><h2>目标：{playerName(view.public.aimTarget ?? '')}</h2><p>确认后将结算防弹、受伤或淘汰；未被防弹抵消时公开目标的全部身份。</p><button className="danger-button full-width-button" onClick={() => send('goodcop:shoot')}><Target size={17} />开枪</button></div> : null}
       {view.public.phase !== 'GAME_OVER' && view.public.currentPlayerId !== session?.playerId ? <p className="waiting-action">等待 {currentName} 行动…</p> : null}
 

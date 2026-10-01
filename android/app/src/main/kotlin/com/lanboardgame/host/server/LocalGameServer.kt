@@ -137,7 +137,7 @@ class LocalGameServer(
 
         override fun onOpen() {
             Log.i(TAG, "websocket open remote=${handshakeRequest.remoteIpAddress}")
-            sendEvent("server:hello", buildJsonObject { put("version", "0.5.0") })
+            sendEvent("server:hello", buildJsonObject { put("version", "0.6.0") })
         }
 
         override fun onClose(code: WebSocketFrame.CloseCode?, reason: String?, initiatedByRemote: Boolean) {

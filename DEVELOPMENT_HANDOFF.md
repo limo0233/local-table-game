@@ -1,8 +1,8 @@
-# LAN Board Game v0.5.0 开发交接文档
+# LAN Board Game v0.6.0 开发交接文档
 
-> 交接用途：将当前 Android 局域网桌游项目移交给其他 AI 或开发者继续开发。  
-> 文档日期：2026-08-27  
-> 当前可构建版本：`0.5.0`，Android `versionCode = 8`  
+> 交接用途：将当前 Android 局域网桌游项目移交给其他 AI 或开发者继续开发。
+> 文档日期：2026-10-01
+> 当前可构建版本：`0.6.0`，Android `versionCode = 9`
 > Android 包名：`com.lanboardgame.host`
 
 ## 1. 项目目标
@@ -48,12 +48,13 @@
 | Good Cop Bad Cop 引擎与 UI | 已完成 | 身份牌、调查、装备、武装、射击和淘汰 |
 | 骰子模拟器引擎与 UI | 已完成 | 纯多人骰子模拟器：房主统一配置 1–10 颗骰子、全量重掷、全员结算、结果统计和全员确认下一局 |
 | 德州引擎与 UI | 已完成 | 下注、All-in、主池、多个边池、平分池 |
-| 测试机器人 | 已完成 | 仅服务器未部署时显示和使用；房主可在等待大厅批量添加/移除，复用真人状态机动作 |
+| 测试机器人 | 已完成 | 仅服务器未部署时显示和使用；房主可批量添加/移除；真人动作后零延迟随机执行合法动作，复用真人状态机 |
+| 独立游戏桌面 | 已完成 | 七款游戏按机制分别布局；掼蛋、Crossfire、Good Cop Bad Cop、德州支持横屏双栏桌面 |
 | 无互联网运行 | 已完成代码修复，待真机回归 | 无 LAN IP 时可仅本机创建；无互联网 Wi-Fi/热点仍需多厂商验收，见第 11 节 |
 | Release 构建 | 已完成 | 启用 R8、资源压缩和系统字体；项目 Release keystore 仍需由维护者配置 |
 | 进程死亡恢复 | 未完成 | 游戏状态当前只保存在内存中 |
 
-重要说明：v0.5.0 在 v0.4.0 基础上增加了四款独立游戏、测试机器人、首页加入布局和房间号样式统一。按昵称恢复离线座位、5 秒断线提示延迟和 WebSocket 应用层心跳仍保持不变。代码级验证完成后，仍需在原问题设备及 Android 多厂商设备上完成 A–D 场景真机回归。
+重要说明：v0.6.0 在 v0.5.0 基础上完成七款游戏的独立桌面布局、横屏适配、测试机器人即时随机行动、新应用图标和包体清理。按昵称恢复离线座位、5 秒断线提示延迟和 WebSocket 应用层心跳保持不变。代码级验证完成后，仍需在原问题设备及 Android 多厂商设备上完成 A–D 场景真机回归。
 
 ## 3. 技术栈
 
@@ -61,7 +62,7 @@
 
 - Kotlin 2.1.20
 - Android Gradle Plugin 8.9.1
-- JDK 21（项目编译目标和 Kotlin JVM target 仍为 17；也可在 Android Studio 中选择额外安装的 JDK 17）
+- JDK 17（可同时保留 JDK 21；Android Studio 的 Gradle JDK 选择额外安装的 JDK 17）
 - compileSdk / targetSdk 35
 - minSdk 26
 - Android WebView
@@ -75,9 +76,8 @@
 - React 19
 - TypeScript 5.7
 - Vite 6
-- Tailwind CSS 4
 - Vitest 3
-- v0.5.0 使用 Android/WebView 系统中文字体，运行时不访问互联网，也不再打包 Noto Sans SC 字体
+- v0.6.0 使用项目内原生 CSS 与 Android/WebView 系统中文字体，运行时不访问互联网，也不打包 Noto Sans SC 字体或未使用的 Tailwind 工具链
 
 ### 数据
 
@@ -459,7 +459,7 @@ v0.3.2 已保留并扩展相关结构化日志。真机回归时应采集：
 ### 用户确认的后续开发与交付约定
 
 - 已移除 `@fontsource-variable/noto-sans-sc` 及其导入，改用 Android/WebView 系统中文字体栈；仍需在 Xm 和至少一台实体 Android 设备上检查中文字体回退、字重、裁切和布局；
-- 已移除完整 Noto Sans SC 字体分片并关闭不必要的 SourceMap；本次 v0.5.0 Release 未签名 APK 为 361,733 bytes（约 0.345 MiB，旧 v0.3.2 Debug APK 为 8,356,966 bytes，二者构建类型不同，仅作体积趋势参考）；
+- 已移除完整 Noto Sans SC 字体分片、未使用的 Tailwind 工具链与 AndroidX Core 依赖，并关闭 SourceMap/发布依赖元数据；v0.6.0 Release 未签名 APK 为 354,732 bytes（约 0.338 MiB，包含 29,313 bytes 新图标）；
 - 后续只构建和交付 Release APK，Debug APK 不进入交付目录或交接包；
 - 固定 Release keystore 后再生成可升级的正式签名 APK，签名材料只由项目维护者保管；
 - 每次正式交付前必须通过 Web/Kotlin 测试、Android Lint、`assembleRelease`、签名验证和 zipalign 检查。
@@ -478,9 +478,9 @@ v0.3.2 已保留并扩展相关结构化日志。真机回归时应采集：
 ## 16. 给下一位 AI 的建议提示词
 
 ```text
-请接手当前 LAN Board Game v0.5.0 Android 项目。不要推翻现有架构，也不要重写已有游戏引擎。
+请接手当前 LAN Board Game v0.6.0 Android 项目。不要推翻现有架构，也不要重写已有游戏引擎。
 
-最高优先级任务：在真机上回归 v0.5.0 的无互联网局域网、部署开关、断线恢复、四款新增游戏和测试机器人流程。应用必须在完全没有互联网、只有普通 Wi-Fi 局域网或房主热点时正常运行。
+最高优先级任务：在真机上回归 v0.6.0 的无互联网局域网、部署开关、断线恢复、七款独立游戏桌面和测试机器人流程。应用必须在完全没有互联网、只有普通 Wi-Fi 局域网或房主热点时正常运行。
 
 请先阅读：
 1. DEVELOPMENT_HANDOFF.md

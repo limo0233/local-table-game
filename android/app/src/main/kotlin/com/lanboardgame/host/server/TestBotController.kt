@@ -17,6 +17,7 @@ import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
+import kotlin.random.Random
 
 /**
  * Server-owned test players.  They use the same game methods as a WebSocket
@@ -26,6 +27,8 @@ class TestBotController(
     private val roomManager: RoomManager,
     private val broadcast: (String) -> Unit,
     private val isEnabled: () -> Boolean = { true },
+    private val random: Random = Random.Default,
+    private val actionDelayMillis: Long = DEFAULT_ACTION_DELAY_MILLIS,
 ) {
     private val scheduler: ScheduledExecutorService = Executors.newSingleThreadScheduledExecutor()
     private val scheduledRooms = ConcurrentHashMap.newKeySet<String>()
@@ -36,7 +39,7 @@ class TestBotController(
         scheduler.schedule({
             scheduledRooms.remove(roomId)
             runRoom(roomId)
-        }, ACTION_DELAY_MILLIS, TimeUnit.MILLISECONDS)
+        }, actionDelayMillis, TimeUnit.MILLISECONDS)
     }
 
     fun shutdown() {
@@ -83,25 +86,25 @@ class TestBotController(
         return when (game.phase) {
             com.lanboardgame.games.avalon.AvalonPhase.TEAM_SELECTION -> {
                 if (game.leaderId !in botIds) false else {
-                    val team = game.playerIds.take(game.requiredTeamSize)
+                    val team = game.playerIds.shuffled(random).take(game.requiredTeamSize)
                     game.selectTeam(game.leaderId, team)
                     true
                 }
             }
             com.lanboardgame.games.avalon.AvalonPhase.TEAM_VOTE -> {
                 val pending = botIds.firstOrNull { it !in game.viewFor(it).public.submittedPlayerIds } ?: return false
-                game.vote(pending, true)
+                game.vote(pending, random.nextBoolean())
                 true
             }
             com.lanboardgame.games.avalon.AvalonPhase.MISSION -> {
                 val pending = botIds.firstOrNull { it in game.selectedTeam && it !in game.viewFor(it).public.submittedPlayerIds } ?: return false
-                val success = !game.roleOf(pending).evil
+                val success = !game.roleOf(pending).evil || random.nextBoolean()
                 game.submitMission(pending, success)
                 true
             }
             com.lanboardgame.games.avalon.AvalonPhase.ASSASSINATION -> {
                 val assassin = botIds.firstOrNull { game.roleOf(it) == com.lanboardgame.games.avalon.AvalonRole.ASSASSIN } ?: return false
-                val target = game.playerIds.firstOrNull { it != assassin } ?: return false
+                val target = game.playerIds.filter { it != assassin }.randomOrNull(random) ?: return false
                 game.assassinate(assassin, target)
                 true
             }
@@ -113,12 +116,16 @@ class TestBotController(
         val botId = game.players.getOrNull(game.actingIndex ?: return false)?.id ?: return false
         if (room.players.values.none { it.id == botId && it.isBot }) return false
         val actions = game.availableActions(botId)
-        val action = when {
-            PokerActionType.CHECK in actions -> PokerAction(PokerActionType.CHECK)
-            PokerActionType.CALL in actions -> PokerAction(PokerActionType.CALL)
-            PokerActionType.ALL_IN in actions -> PokerAction(PokerActionType.ALL_IN)
-            PokerActionType.FOLD in actions -> PokerAction(PokerActionType.FOLD)
-            else -> return false
+        val selected = actions.randomOrNull(random) ?: return false
+        val action = when (selected) {
+            PokerActionType.RAISE_TO -> {
+                val view = game.viewFor(botId)
+                val player = game.players.first { it.id == botId }
+                val maximum = player.streetBet + player.chips
+                if (maximum < view.public.minRaiseTo) PokerAction(PokerActionType.ALL_IN)
+                else PokerAction(PokerActionType.RAISE_TO, random.nextInt(view.public.minRaiseTo, maximum + 1))
+            }
+            else -> PokerAction(selected)
         }
         game.act(botId, action)
         return true
@@ -151,7 +158,7 @@ class TestBotController(
             return true
         }
         if (!view.canPlay) return false
-        val candidates = guandanCandidates(view.myHand, view.public.lastPlay?.type)
+        val candidates = guandanCandidates(view.myHand, view.public.lastPlay?.type).shuffled(random)
         for (candidate in candidates) {
             if (runCatching { game.play(actor, candidate) }.isSuccess) return true
         }
@@ -191,8 +198,10 @@ class TestBotController(
             return true
         }
         if (game.phase != com.lanboardgame.games.timebomb.TimeBombPhase.ROUND || game.currentCutterId !in botIds) return false
-        val target = game.viewFor(game.currentCutterId).targetIds.firstOrNull() ?: return false
-        game.cut(game.currentCutterId, target, 0)
+        val view = game.viewFor(game.currentCutterId)
+        val target = view.targetIds.randomOrNull(random) ?: return false
+        val wireCount = view.public.wireCountsByPlayer[target] ?: return false
+        game.cut(game.currentCutterId, target, random.nextInt(wireCount))
         return true
     }
 
@@ -210,14 +219,16 @@ class TestBotController(
                 return true
             }
             com.lanboardgame.games.crossfire.CrossfirePhase.SHUFFLE -> {
-                val pending = bots.firstOrNull { it !in game.viewFor(it).public.confirmedPlayerIds } ?: return false
+                val group = game.currentShuffleGroup.toSet()
+                val confirmed = game.viewFor(bots.firstOrNull() ?: return false).public.confirmedPlayerIds
+                val pending = bots.firstOrNull { it in group && it !in confirmed } ?: return false
                 game.confirmShuffle(pending)
                 return true
             }
             com.lanboardgame.games.crossfire.CrossfirePhase.TARGETING -> {
                 val locked = game.viewFor(bots.firstOrNull() ?: return false).public.lockedPlayers
                 val actor = bots.firstOrNull { it !in locked } ?: return false
-                val target = room.players.values.firstOrNull { it.id != actor }?.id ?: return false
+                val target = room.players.values.map { it.id }.filter { it != actor }.randomOrNull(random) ?: return false
                 game.submitTarget(actor, target)
                 return true
             }
@@ -231,7 +242,7 @@ class TestBotController(
         if (actor !in bots) return false
         val view = game.viewFor(actor)
         if (game.phase == com.lanboardgame.games.goodcopbadcop.GoodCopPhase.ACTION_RESOLVE) {
-            val target = view.targetIds.firstOrNull() ?: return false
+            val target = view.targetIds.randomOrNull(random) ?: return false
             return when {
                 view.canAim && view.public.aimTarget == null -> { game.aim(actor, target); true }
                 view.canShoot -> { game.shoot(actor); true }
@@ -239,15 +250,21 @@ class TestBotController(
             }
         }
         if (game.phase != com.lanboardgame.games.goodcopbadcop.GoodCopPhase.TURN) return false
-        val target = view.targetIds.firstOrNull { (view.public.hiddenIntegrityCounts[it] ?: 0) > 0 } ?: view.targetIds.firstOrNull()
-        val preference = view.public.history.size % 3
-        return when {
-            preference == 0 && view.canArm -> { game.arm(actor); true }
-            preference == 1 && view.canInvestigate && target != null -> { game.investigate(actor, target, 0); true }
-            preference == 2 && view.canEquip -> { game.equip(actor); true }
-            view.canInvestigate && target != null -> { game.investigate(actor, target, 0); true }
-            view.canEquip -> { game.equip(actor); true }
-            view.canArm -> { game.arm(actor); true }
+        val target = view.targetIds.filter { (view.public.hiddenIntegrityCounts[it] ?: 0) > 0 }.randomOrNull(random)
+            ?: view.targetIds.randomOrNull(random)
+        val available = buildList {
+            if (view.canInvestigate && target != null && (view.public.hiddenIntegrityCounts[target] ?: 0) > 0) add("INVESTIGATE")
+            if (view.canEquip) add("EQUIP")
+            if (view.canArm) add("ARM")
+        }
+        return when (available.randomOrNull(random)) {
+            "INVESTIGATE" -> {
+                val hiddenCount = view.public.hiddenIntegrityCounts.getValue(target!!)
+                game.investigate(actor, target, random.nextInt(hiddenCount))
+                true
+            }
+            "EQUIP" -> { game.equip(actor); true }
+            "ARM" -> { game.arm(actor); true }
             else -> false
         }
     }
@@ -261,7 +278,7 @@ class TestBotController(
             return true
         }
         val actor = bots.firstOrNull { !game.viewFor(it).settled } ?: return false
-        game.reroll(actor)
+        repeat(random.nextInt(3)) { game.reroll(actor) }
         game.settle(actor)
         return true
     }
@@ -281,7 +298,7 @@ class TestBotController(
     }
 
     companion object {
-        private const val ACTION_DELAY_MILLIS = 220L
+        private const val DEFAULT_ACTION_DELAY_MILLIS = 0L
         private const val MAX_ACTIONS_PER_TICK = 8
         private const val TAG = "LanGame.TestBot"
     }

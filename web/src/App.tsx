@@ -9,10 +9,17 @@ import { PokerGame } from './games/poker/PokerGame'
 import { Home } from './pages/Home'
 import { Lobby } from './pages/Lobby'
 import { useGameSocket } from './useGameSocket'
+import { usePreferredOrientation } from './usePreferredOrientation'
 import type { AvalonView, CrossfireView, GoodCopView, GuandanView, LiarDiceView, PokerView, TimeBombView } from './types'
 
 export function App() {
   const socket = useGameSocket()
+  const isPlaying = Boolean(socket.room && socket.room.status !== 'WAITING' && socket.game)
+  // Every actual game table is designed around a landscape canvas. Keep the
+  // lobby/home screens portrait-friendly, then lock the native host once the
+  // server has supplied a playable game state.
+  const preferredOrientation = isPlaying ? 'landscape' : 'portrait'
+  usePreferredOrientation(preferredOrientation)
   const pathRoom = location.pathname.match(/^\/room\/(\d{6})/)?.[1]
   const content = !socket.room
     ? <Home connected={socket.connected} initialRoomId={pathRoom} onCreate={socket.createRoom} onJoin={socket.joinRoom} />

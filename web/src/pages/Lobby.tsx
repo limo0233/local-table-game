@@ -96,8 +96,8 @@ export function Lobby({ room, session, avalonConfig, liarDiceConfig, send, onLea
       </div>
       <div className="lobby-title"><div><UserRound size={19} />玩家 {room.players.length}/{playerLimit}</div><span><Radio size={15} />实时同步</span></div>
       <div className="player-list">
-        {room.players.map(player => <div className={`player-row ${player.connected ? '' : 'offline'}`} key={player.id}>
-          <div className="avatar">{player.nickname.slice(0, 1).toUpperCase()}</div>
+        {room.players.map((player, index) => <div className={`player-row ${player.connected ? '' : 'offline'}`} key={player.id}>
+          <div className="player-seat-number">{String(index + 1).padStart(2, '0')}</div>
           <div><strong>{player.nickname}</strong><small>{player.id === session?.playerId ? '你' : player.connected ? '已连接' : '重连中'}</small></div>
           {player.isHost ? <span className="host-mark"><Crown size={15} />房主</span> : player.isBot && serverDeployed === false ? <span className="bot-mark"><Bot size={14} />测试机器人</span> : <span className={player.ready ? 'ready-mark' : 'wait-mark'}>{player.ready ? <><Check size={15} />已准备</> : '等待准备'}</span>}
           {isHost && !player.isHost ? <button className="kick-button" aria-label={`踢出 ${player.nickname}`} onClick={() => send('player:kick', { targetId: player.id })}><X size={14} /></button> : null}

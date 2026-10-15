@@ -3,6 +3,7 @@ import type { CSSProperties } from 'react'
 import { useEffect, useMemo, useState } from 'react'
 import { GameRulesModal } from '../../components/GameRulesModal'
 import { LandscapeHint } from '../../components/LandscapeHint'
+import { PlayerNameplate } from '../../components/PlayerNameplate'
 import { RoomBackButton } from '../../components/RoomBackButton'
 import { crossfireRoleNames } from '../roleNames'
 import type { CrossfireView, RoomView, Session } from '../../types'
@@ -66,10 +67,20 @@ export function CrossfireGame({ room, session, view, send, onLeave }: Props) {
           if (!player) return null
           const selectable = view.canSubmitTarget && view.targetIds.includes(id)
           const angle = (index / visualSeats.length) * 360 + 90
-          return <button type="button" className={`crossfire-map-seat ${shuffleSet.has(id) ? 'in-shuffle' : ''} ${id === view.public.dealerPlayerId ? 'dealer' : ''} ${view.public.lockedPlayers.includes(id) ? 'locked' : ''} ${id === targetId ? 'selected' : ''} ${player.connected ? '' : 'offline'}`} style={{ '--crossfire-angle': `${angle}deg` } as CSSProperties} disabled={!selectable} onClick={() => setTargetId(id)} key={id}>
-            <span>{player.nickname.slice(0, 1)}</span><strong>{id === session?.playerId ? '你' : player.nickname}</strong>
-            <small>{id === view.public.dealerPlayerId ? '庄家' : view.public.lockedPlayers.includes(id) ? '已锁定' : shuffleSet.has(id) ? '本组混洗' : `${view.public.seatOrder.indexOf(id) + 1}号`}</small>
-          </button>
+          return <PlayerNameplate
+            key={id}
+            index={view.public.seatOrder.indexOf(id)}
+            name={id === session?.playerId ? '你' : player.nickname}
+            status={id === view.public.dealerPlayerId ? '庄家' : view.public.lockedPlayers.includes(id) ? '目标已锁定' : shuffleSet.has(id) ? '参与本组混洗' : '等待情报'}
+            detail={shuffleSet.has(id) ? `混洗组 ${view.public.shuffleGroupIndex + 1}` : undefined}
+            badge={id === view.public.dealerPlayerId ? 'D' : undefined}
+            className={`crossfire-map-seat ${shuffleSet.has(id) ? 'in-shuffle' : ''} ${id === view.public.dealerPlayerId ? 'dealer' : ''} ${view.public.lockedPlayers.includes(id) ? 'locked' : ''}`}
+            style={{ '--crossfire-angle': `${angle}deg` } as CSSProperties}
+            selected={id === targetId}
+            offline={!player.connected}
+            disabled={!selectable}
+            onClick={selectable ? () => setTargetId(id) : undefined}
+          />
         })}
       </div>
       <div className="new-game-private crossfire-identity-panel">

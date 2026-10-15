@@ -75,7 +75,6 @@ button:disabled { cursor: not-allowed; opacity: .42; }
 .proposal-meta { display: flex; justify-content: space-between; color: var(--muted); font-size: 11px; }.proposal-meta span { display: flex; align-items: center; gap: 5px; }
 .mission-counts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 9px 0 4px; }.mission-counts span { padding: 6px 7px; border: 1px solid rgba(255,255,255,.06); border-radius: 8px; color: var(--muted); background: rgba(255,255,255,.025); font-size: 9px; text-align: center; }.mission-counts strong { margin-left: 2px; color: #e8d29d; font-size: 11px; }
 .round-table { position: relative; width: 100%; aspect-ratio: 1; margin: 6px auto; border: 1px solid rgba(215,181,109,.22); border-radius: 50%; background: radial-gradient(circle, #132a31 0 21%, #0d1c23 22% 61%, #09161c 62%); box-shadow: inset 0 0 60px rgba(0,0,0,.45); }.round-table::after { content: ""; position: absolute; inset: 8%; border: 1px solid rgba(215,181,109,.1); border-radius: 50%; pointer-events: none; }
-.avalon-seat { position: absolute; z-index: 3; left: var(--seat-x); top: var(--seat-y); transform: translate(-50%, -50%); width: 58px; padding: 0; border: 0; background: none; }.seat-avatar { position: relative; width: 43px; height: 43px; display: grid; place-items: center; margin: auto; border: 2px solid #8d7a52; border-radius: 50%; background: #1b2c32; color: #cbb884; font-weight: 750; transition: .15s; }.avalon-seat.selected .seat-avatar { border-color: #6be58c; background: #17452c; box-shadow: 0 0 0 5px rgba(74,215,118,.12); }.avalon-seat small { display: block; max-width: 58px; margin-top: 4px; color: #e5e2d9; font-size: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }.leader-crown { position: absolute; left: 50%; top: -10px; transform: translateX(-50%); color: #efc55e; fill: #8d691e; }.table-center { position: absolute; z-index: 2; left: 50%; top: 50%; transform: translate(-50%, -50%); display: grid; justify-items: center; color: var(--gold); }.table-center strong { margin: 5px 0 2px; font-size: 13px; }.table-center span { color: var(--muted); font-size: 10px; }
 .identity-panel { display: grid; grid-template-columns: 48px 1fr; gap: 13px; margin: 8px 0 13px; padding: 14px; border: 1px solid rgba(70,133,176,.46); border-radius: 14px; background: linear-gradient(110deg, #102e43, #0c202b); }.identity-panel.evil { border-color: rgba(177,68,60,.5); background: linear-gradient(110deg, #3c1b20, #1a171d); }.identity-icon { width: 47px; height: 47px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: var(--gold); }.identity-panel span { color: var(--muted); font-size: 10px; }.identity-panel h2 { display: inline; margin: 0 8px 0 0; color: #efd496; font: 650 21px Georgia, serif; }.identity-panel p { margin: 4px 0 0; color: #c6cfcc; font-size: 11px; line-height: 1.5; }
 .split-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }.waiting-action { margin: 0; padding: 14px; color: var(--muted); text-align: center; font-size: 13px; }.assassinate-panel strong { display: block; margin-bottom: 9px; color: #e3c17b; }.assassinate-panel > div { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }.assassinate-panel button { padding: 10px 6px; border: 1px solid #81443f; border-radius: 9px; background: #3b2022; }.result-panel { padding: 15px; border: 1px solid var(--line); border-radius: 14px; text-align: center; background: #12242a; }.result-panel h2 { margin: 0 0 5px; color: var(--gold); }.result-panel p { margin: 0; color: var(--muted); font-size: 13px; }
 .modal-backdrop { position: fixed; z-index: 70; inset: 0; padding: max(18px, env(safe-area-inset-top)) 14px max(18px, env(safe-area-inset-bottom)); display: grid; place-items: center; background: rgba(2,8,11,.82); backdrop-filter: blur(5px); }.game-modal { width: min(100%, 520px); max-height: 88dvh; overflow-y: auto; padding: 17px; border: 1px solid rgba(215,181,109,.32); border-radius: 17px; background: #0e1c22; box-shadow: 0 24px 70px rgba(0,0,0,.6); }.game-modal > header { display: flex; align-items: center; justify-content: space-between; position: sticky; top: -17px; z-index: 2; margin: -2px -2px 12px; padding: 2px 2px 9px; background: #0e1c22; }.game-modal > header > div { display: flex; align-items: center; gap: 8px; color: var(--gold); }.game-modal h2 { margin: 0; color: #eee6d7; font-size: 18px; }.game-modal > header button { width: 34px; height: 34px; padding: 0; border: 1px solid rgba(255,255,255,.09); border-radius: 9px; display: grid; place-items: center; background: #15272d; }.history-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }.history-stats span { padding: 7px 4px; border-radius: 8px; color: #d9c58f; background: #14272d; font-size: 9px; text-align: center; }.game-modal h3 { margin: 15px 0 8px; color: #d9c58f; font-size: 12px; }.vote-history-list { display: grid; gap: 8px; }.vote-history-list article { padding: 10px; border: 1px solid rgba(255,255,255,.07); border-left: 3px solid #d25d53; border-radius: 10px; background: #0a151a; }.vote-history-list article.approved { border-left-color: #49bd78; }.history-line { display: flex; justify-content: space-between; font-size: 11px; }.history-line span { color: #e98078; }.approved .history-line span { color: #68d692; }.vote-history-list p { margin: 5px 0 7px; color: var(--muted); font-size: 9px; }.vote-name-list { display: flex; flex-wrap: wrap; gap: 5px; }.vote-name-list span { padding: 3px 6px; border-radius: 6px; font-size: 8px; }.vote-name-list .yes { color: #79dba0; background: #123426; }.vote-name-list .no { color: #f0958d; background: #3a2022; }.mission-history-list { display: grid; gap: 7px; }.mission-history-list > div { display: grid; grid-template-columns: auto 1fr; gap: 3px 8px; padding: 9px; border: 1px solid rgba(255,255,255,.07); border-radius: 9px; }.mission-history-list strong, .mission-history-list span { font-size: 10px; }.mission-history-list span { color: #77d99a; text-align: right; }.mission-history-list .failure span { color: #ec847b; }.mission-history-list small { grid-column: 1 / -1; color: var(--muted); font-size: 8px; }.empty-history { margin: 0; padding: 13px; color: var(--muted); border: 1px dashed rgba(255,255,255,.08); border-radius: 9px; text-align: center; font-size: 10px; }.intro-modal ol { margin: 0; padding-left: 21px; color: #d6dbd7; font-size: 12px; line-height: 1.65; }.intro-modal li + li { margin-top: 6px; }.intro-modal > p { padding: 9px; border-radius: 9px; color: #d8c18e; background: #16272b; font-size: 10px; }.abandon-button { width: 100%; min-height: 44px; border: 1px solid rgba(210,93,83,.45); border-radius: 11px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; color: #ef9289; background: #391f21; font-weight: 700; }.confirm-modal { max-width: 420px; }.confirm-modal > p { color: var(--muted); font-size: 12px; line-height: 1.55; }.confirm-modal > div { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }.confirm-modal .danger-button { width: 100%; }
@@ -93,6 +92,267 @@ button:disabled { cursor: not-allowed; opacity: .42; }
   .poker-header { width: 100%; max-width: none; }.poker-stage { width: min(100%, 980px); padding-bottom: 8px; }.poker-table { height: min(58dvh, 560px); min-height: 380px; }
   .poker-action-grid { grid-template-columns: repeat(4, 1fr); }
   .avalon-screen { max-width: 1050px; }
+}
+
+/* 0.7 game-table redesign: text-only seats, distinct tables, shared finish. */
+.player-nameplate {
+  min-width: 0;
+  min-height: 52px;
+  padding: 7px 9px;
+  border: 1px solid rgba(255,255,255,.105);
+  border-radius: 11px;
+  display: grid;
+  grid-template-columns: 26px minmax(0,1fr) auto;
+  grid-template-rows: auto auto;
+  align-items: center;
+  gap: 1px 8px;
+  color: #f0eee8;
+  background: rgba(9,18,23,.94);
+  box-shadow: 0 8px 22px rgba(0,0,0,.24), inset 0 1px rgba(255,255,255,.035);
+  text-align: left;
+}
+.player-nameplate:disabled { opacity: 1; cursor: default; }
+.player-nameplate-seat {
+  grid-row: 1 / 3;
+  color: color-mix(in srgb, var(--table-accent, #d7b56d) 82%, white);
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: .08em;
+}
+.player-nameplate-copy { min-width: 0; display: grid; gap: 2px; }
+.player-nameplate-copy strong { overflow: hidden; color: #f2f0e9; font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
+.player-nameplate-copy small { overflow: hidden; color: #8e9c9b; font-size: 8px; text-overflow: ellipsis; white-space: nowrap; }
+.player-nameplate-copy em { color: color-mix(in srgb, var(--table-accent, #d7b56d) 76%, white); font-size: 8px; font-style: normal; }
+.player-nameplate-badge { align-self: start; color: color-mix(in srgb, var(--table-accent, #d7b56d) 82%, white); font-size: 8px; white-space: nowrap; }
+.player-nameplate.is-current { border-color: color-mix(in srgb, var(--table-accent, #d7b56d) 70%, transparent); background: color-mix(in srgb, var(--table-accent, #d7b56d) 10%, #091217); }
+.player-nameplate.is-selected { border-color: #69c990; background: rgba(20,63,42,.96); }
+.player-nameplate.is-offline { opacity: .4; filter: saturate(.35); }
+.player-seat-number {
+  color: #d8bd7c;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: .08em;
+}
+.player-row { grid-template-columns: 28px 1fr auto auto; }
+
+.game-screen,
+.new-game-screen {
+  background-color: #071116;
+  background-image: linear-gradient(145deg, rgba(255,255,255,.018), transparent 34%);
+}
+.game-header { border-bottom-color: rgba(255,255,255,.07); }
+.game-header h1 { letter-spacing: -.02em; }
+.game-header-actions > button { border-color: rgba(255,255,255,.1); background: #0c181e; }
+
+/* Avalon — council table and a separate private command rail. */
+.avalon-screen { --table-accent: #d3b36a; width: min(100%, 1180px); }
+.avalon-screen > .mission-rail { width: min(620px, 88%); margin: 12px auto 7px; }
+.avalon-screen > .proposal-meta,
+.avalon-screen > .mission-counts { width: min(760px,100%); margin-inline: auto; }
+.avalon-board-layout { display: grid; gap: 12px; margin: 11px 0 14px; }
+.avalon-council-table {
+  position: relative;
+  height: clamp(430px, 108vw, 570px);
+  min-height: 430px;
+  border: 1px solid rgba(211,179,106,.28);
+  border-radius: 32px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at center, #162d38 0 25%, #0d222c 26% 61%, #09171e 62%),
+    #0a171d;
+  box-shadow: inset 0 0 70px rgba(0,0,0,.55), 0 18px 42px rgba(0,0,0,.22);
+}
+.avalon-council-table::before {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  border: 1px solid rgba(211,179,106,.18);
+  border-radius: 50%;
+}
+.avalon-table-rings i { position: absolute; left: 50%; top: 50%; border: 1px dashed rgba(255,255,255,.07); border-radius: 50%; transform: translate(-50%,-50%); }
+.avalon-table-rings i:first-child { width: 62%; height: 62%; }
+.avalon-table-rings i:last-child { width: 39%; height: 39%; }
+.avalon-table-center {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 50%;
+  width: min(220px, 42%);
+  transform: translate(-50%,-50%);
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  color: #d3b36a;
+  text-align: center;
+}
+.avalon-table-center > span { color: #809095; font-size: 8px; letter-spacing: .12em; }
+.avalon-table-center > strong { color: #f1eee5; font-size: 16px; }
+.avalon-table-center > small { color: #9ba7a7; font-size: 9px; }
+.avalon-table-center > div { margin-top: 5px; padding: 5px 8px; border: 1px solid rgba(211,179,106,.22); border-radius: 8px; color: #dec98f; background: rgba(0,0,0,.18); font-size: 8px; }
+.avalon-council-seat {
+  --council-radius: clamp(155px, 39vw, 245px);
+  position: absolute;
+  z-index: 4;
+  left: 50%;
+  top: 50%;
+  width: min(142px, 34vw);
+  transform: translate(-50%,-50%) rotate(var(--seat-angle)) translateY(calc(-1 * var(--council-radius))) rotate(calc(-1 * var(--seat-angle)));
+}
+.avalon-command-panel { display: grid; align-content: start; gap: 10px; }
+.avalon-command-panel .identity-panel { margin: 0; min-height: 108px; border-color: rgba(211,179,106,.24); background: #101d22; }
+.avalon-action-dock { position: relative; bottom: auto; margin: 0; padding: 13px; border: 1px solid rgba(255,255,255,.08); border-radius: 14px; background: #0b171d; }
+.avalon-action-dock > header { display: grid; gap: 3px; margin-bottom: 11px; }
+.avalon-action-dock > header span { color: #819092; font-size: 8px; letter-spacing: .1em; }
+.avalon-action-dock > header strong { color: #e9e5db; font-size: 13px; }
+
+/* Guandan — four fixed partnership positions and an obvious center trick. */
+.guandan-screen { --table-accent: #d9b765; width: min(100%, 1200px); }
+.guandan-seat-table {
+  min-height: 430px;
+  border-color: rgba(217,183,101,.28);
+  border-radius: 32px;
+  background: radial-gradient(ellipse at center, #1d5139 0 18%, #143c2b 19% 57%, #0c241a 58%);
+  box-shadow: inset 0 0 70px rgba(0,0,0,.5), 0 18px 42px rgba(0,0,0,.22);
+}
+.guandan-seat-table::after { inset: 12%; border-color: rgba(241,207,129,.13); border-radius: 46%; }
+.guandan-partner-line { left: 50%; top: 13%; bottom: 13%; background: linear-gradient(transparent, rgba(121,197,149,.34), transparent); }
+.guandan-seat { width: min(150px, 35vw); min-height: 55px; transform: translate(-50%,-50%); justify-items: stretch; }
+.guandan-seat.self { top: 88%; }.guandan-seat.partner { top: 12%; }.guandan-seat.left { left: 13%; }.guandan-seat.right { left: 87%; }
+.guandan-seat.is-current { border-color: #e5c164; background: rgba(43,52,28,.96); }
+.guandan-seat.passed { opacity: .58; }
+.guandan-seat-table .guandan-center {
+  width: min(250px,47%);
+  min-width: 160px;
+  padding: 12px;
+  border: 1px solid rgba(255,255,255,.09);
+  border-radius: 14px;
+  background: rgba(7,27,18,.78);
+  box-shadow: 0 12px 30px rgba(0,0,0,.22);
+}
+.guandan-hand-panel { border-color: rgba(217,183,101,.2); background: #0d1918; }
+.guandan-hand { padding-inline: 12px; }
+.guandan-actions { border-top: 1px solid rgba(255,255,255,.06); }
+
+/* TimeBomb — wire racks on the left, shared console on the right. */
+.timebomb-screen { --table-accent: #e98a5d; width: min(100%, 1180px); }
+.timebomb-workbench {
+  padding: 13px;
+  border-color: rgba(233,138,93,.27);
+  border-radius: 22px;
+  background: #151a1b;
+  box-shadow: inset 0 0 54px rgba(0,0,0,.34), 0 16px 36px rgba(0,0,0,.2);
+}
+.timebomb-wire-grid { grid-template-columns: repeat(2,minmax(0,1fr)); align-content: start; }
+.timebomb-wire-box { width: auto; min-height: 66px; grid-template-columns: 26px minmax(0,1fr) auto; justify-items: stretch; padding: 8px 9px; border-color: rgba(255,255,255,.09); border-radius: 10px; background: #10191c; }
+.timebomb-wire-box.is-current { border-color: #e7aa5e; }
+.timebomb-wire-box.is-selected { border-color: #ef6b5e; background: #33201f; }
+.timebomb-console { min-height: 220px; align-content: center; border-color: rgba(233,138,93,.28); background: #0c1417; }
+.timebomb-console > strong { color: #ff8a70; font-family: ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .05em; }
+.timebomb-screen .new-game-private { border-left: 3px solid #e98a5d; }
+
+/* Crossfire — an intelligence orbit with restrained, readable seat plates. */
+.crossfire-screen { --table-accent: #67b9e7; width: min(100%, 1200px); }
+.crossfire-intel-map {
+  height: clamp(430px, 104vw, 610px);
+  border-color: rgba(103,185,231,.28);
+  background: radial-gradient(circle, #0c344c 0 17%, #09283c 18% 51%, #071925 52%);
+  box-shadow: inset 0 0 70px rgba(0,0,0,.5), 0 18px 42px rgba(0,0,0,.2);
+}
+.crossfire-map-seat { --crossfire-radius: clamp(158px,40vw,250px); width: min(150px,34vw); min-height: 54px; grid-template-columns: 26px minmax(0,1fr) auto; grid-template-rows: auto auto; border-radius: 10px; }
+.crossfire-map-seat.in-shuffle { border-color: #65c8f5; background: #0b3146; }
+.crossfire-map-seat.locked { border-color: #68747a; opacity: .62; }
+.crossfire-map-seat.dealer::after { display: none; }
+.crossfire-map-center { width: min(250px,43%); padding: 11px; border: 1px solid rgba(103,185,231,.13); border-radius: 14px; background: rgba(5,21,32,.56); }
+.crossfire-identity-panel { border-left: 3px solid #67b9e7; }
+
+/* Good Cop Bad Cop — clean case files instead of portrait cards. */
+.goodcop-screen { --table-accent: #9aaf79; width: min(100%, 1180px); }
+.goodcop-case-board {
+  padding: 13px;
+  border-color: rgba(154,175,121,.24);
+  border-radius: 20px;
+  background: #111815;
+  box-shadow: 0 16px 38px rgba(0,0,0,.2);
+}
+.goodcop-case-status { min-height: 65px; align-content: center; border-left-width: 2px; border-radius: 0 9px 9px 0; background: #182019; }
+.goodcop-dossier { min-height: 112px; padding: 10px; border-color: rgba(255,255,255,.085); border-radius: 9px; background: #0e1713; }
+.goodcop-dossier.current { border-color: #d7bb6b; background: #1d2116; }
+.goodcop-dossier.selected { border-color: #66aed9; background: #102535; }
+.goodcop-dossier > header > .dossier-seat-no { width: auto; height: auto; border: 0; border-radius: 0; color: #b7c79b; background: none; font-size: 9px; letter-spacing: .08em; }
+.public-integrity-row i { min-height: 30px; border-radius: 4px; }
+.goodcop-screen .new-game-private { border-left: 3px solid #9aaf79; }
+
+/* Dice simulator — private portrait tray, compact settlement board. */
+.liarsdice-screen { --table-accent: #b59adc; width: min(100%, 590px); margin-inline: auto; }
+.dice-status-roster { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); overflow: visible; }
+.dice-status-roster > div { min-width: 0; padding: 7px 9px; border-color: rgba(181,154,220,.18); background: #17131d; }
+.dice-status-roster span { width: auto; height: auto; border: 0; border-radius: 0; color: #cbb6e7; background: none; letter-spacing: .08em; }
+.dice-tray {
+  padding: 17px;
+  border-color: rgba(181,154,220,.3);
+  border-radius: 26px;
+  background: #201927;
+  box-shadow: inset 0 0 44px rgba(0,0,0,.25), 0 16px 38px rgba(0,0,0,.22);
+}
+.dice-tray-grid .die { border-color: #d8cde1; background: #ece6f0; box-shadow: inset 0 1px white, 0 6px 15px rgba(0,0,0,.25); }
+.liarsdice-screen > .new-game-action-card { border-color: rgba(181,154,220,.21); background: #0d171b; }
+
+/* Poker — quiet felt table and text-only seat tags. */
+.poker-screen { --table-accent: #d4ad61; background: #071116; }
+.poker-table {
+  border-color: #58442b;
+  background: radial-gradient(ellipse at center, #174d36 0 57%, #123b2b 58%);
+  box-shadow: inset 0 0 72px rgba(0,0,0,.48), 0 18px 42px rgba(0,0,0,.23);
+}
+.poker-table::after { content: ""; position: absolute; inset: 10%; border: 1px solid rgba(232,196,121,.12); border-radius: 46%; pointer-events: none; }
+.poker-seat { z-index: 4; width: min(128px,30vw); }
+.poker-seat .seat-bubble { border-color: rgba(255,255,255,.11); border-radius: 10px; background: rgba(7,19,17,.95); box-shadow: 0 8px 22px rgba(0,0,0,.24); }
+.poker-seat.acting .seat-bubble { border-color: #e3bd68; background: rgba(48,45,24,.96); }
+.pot-label { border-color: rgba(227,189,104,.22); background: rgba(6,25,18,.72); }
+.poker-actions { background: #09151a; }
+
+@media (orientation: portrait) and (max-width: 699px) {
+  .avalon-screen .landscape-hint,
+  .timebomb-screen .landscape-hint { display: flex; }
+  .avalon-council-seat { --council-radius: clamp(150px,39vw,172px); width: min(130px,33vw); }
+  .crossfire-map-seat { --crossfire-radius: clamp(153px,40vw,175px); width: min(128px,32vw); }
+}
+
+@media (min-width: 700px) and (orientation: landscape) {
+  .screen-pad { padding-inline: clamp(14px,2.2vw,28px); }
+  .avalon-screen { display: block; min-height: 100dvh; }
+  .avalon-screen > .mission-rail { margin-top: 7px; }
+  .avalon-board-layout { grid-template-columns: minmax(570px,1fr) minmax(280px,340px); align-items: stretch; }
+  .avalon-council-table { height: min(66dvh,590px); min-height: 410px; }
+  .avalon-council-seat { --council-radius: min(28dvh,245px); width: 146px; }
+  .avalon-command-panel { grid-template-rows: auto 1fr; }
+  .avalon-action-dock { align-self: stretch; display: grid; align-content: center; }
+
+  .guandan-screen { grid-template-columns: minmax(550px,1.3fr) minmax(310px,.7fr); }
+  .guandan-screen > .guandan-seat-table { min-height: min(68dvh,600px); }
+  .guandan-seat { width: 150px; }
+  .guandan-hand-panel { align-self: stretch; display: grid; grid-template-rows: auto minmax(0,1fr); }
+
+  .timebomb-screen { display: grid; grid-template-columns: minmax(550px,1.25fr) minmax(290px,.75fr); grid-auto-rows: min-content; column-gap: 16px; }
+  .timebomb-screen > .game-header,
+  .timebomb-screen > .landscape-hint { grid-column: 1 / -1; }
+  .timebomb-screen > .timebomb-workbench { grid-column: 1; grid-row: 3 / span 5; grid-template-columns: minmax(0,1.25fr) minmax(220px,.75fr); min-height: min(74dvh,620px); margin-bottom: 0; }
+  .timebomb-screen > .new-game-private,
+  .timebomb-screen > .new-game-action-card,
+  .timebomb-screen > .new-game-result,
+  .timebomb-screen > .game-history-drawer { grid-column: 2; }
+  .timebomb-wire-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+
+  .crossfire-screen { grid-template-columns: minmax(570px,1.35fr) minmax(300px,.65fr); }
+  .crossfire-screen > .crossfire-intel-map { height: min(78dvh,640px); }
+  .crossfire-map-seat { --crossfire-radius: min(31dvh,255px); width: 150px; }
+
+  .goodcop-screen { grid-template-columns: minmax(590px,1.35fr) minmax(300px,.65fr); }
+  .goodcop-screen > .goodcop-case-board { grid-template-columns: 175px minmax(0,1fr); min-height: min(74dvh,610px); align-content: start; }
+  .goodcop-dossier-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+
+  .poker-table { height: min(76dvh,650px); }
+  .poker-seat { width: 135px; }
 }
 
 @media (max-width: 370px) {
@@ -214,17 +474,7 @@ button:disabled { cursor: not-allowed; opacity: .42; }
 .new-game-result { display: grid; gap: 5px; margin: 10px 0; padding: 12px; border: 1px solid rgba(215,181,109,.25); border-radius: 12px; color: #e7d39d; background: rgba(24,44,42,.8); text-align: center; font-size: 12px; }
 .new-game-result.safe { border-color: rgba(83,178,116,.38); }.new-game-result.defuse { border-color: rgba(87,158,201,.38); }.new-game-result.bomb { border-color: rgba(207,88,78,.5); color: #f2aaa1; }
 .new-game-result.final { gap: 8px; margin-top: 15px; padding: 16px; }.new-game-result.final h2 { margin: 0; color: var(--gold); font-size: 19px; }.new-game-result.final p { margin: 0; color: var(--muted); font-size: 12px; }
-.player-ring { position: relative; width: 100%; height: clamp(300px, 62vw, 500px); min-height: 300px; margin: 10px 0 13px; overflow: hidden; border: 1px solid rgba(215,181,109,.22); border-radius: 26px; background: radial-gradient(ellipse at center, rgba(33,70,59,.9), rgba(13,31,30,.93) 58%, rgba(7,17,23,.96)); box-shadow: inset 0 0 55px rgba(0,0,0,.42); }
-.player-ring::before, .player-ring::after { content: ""; position: absolute; left: 50%; top: 50%; border: 1px solid rgba(215,181,109,.13); border-radius: 50%; transform: translate(-50%, -50%); pointer-events: none; }
-.player-ring::before { width: 58%; height: 64%; }.player-ring::after { width: 38%; height: 42%; border-color: rgba(215,181,109,.09); }
-.player-ring-center { position: absolute; z-index: 2; left: 50%; top: 50%; width: min(48%, 265px); max-height: 74%; display: grid; place-items: center; transform: translate(-50%, -50%); text-align: center; }
-.player-ring-seat { --ring-radius: clamp(108px, 28vw, 215px); position: absolute; z-index: 3; left: 50%; top: 50%; width: min(118px, 24vw); min-height: 48px; padding: 5px 6px; display: flex; align-items: center; gap: 5px; border: 1px solid rgba(255,255,255,.12); border-radius: 11px; color: #e5e1d8; background: rgba(7,18,23,.9); box-shadow: 0 5px 16px rgba(0,0,0,.26); transform: translate(-50%, -50%) rotate(var(--ring-angle)) translateY(calc(-1 * var(--ring-radius))); transform-origin: center center; text-align: left; }
-.player-ring-seat > * { transform: rotate(calc(-1 * var(--ring-angle))); }.player-ring-seat.current { border-color: rgba(239,196,89,.78); box-shadow: 0 0 0 3px rgba(239,196,89,.14), 0 5px 16px rgba(0,0,0,.26); }.player-ring-seat.selected { border-color: rgba(107,229,140,.78); background: rgba(23,69,44,.92); }.player-ring-seat.offline { opacity: .45; }.player-ring-seat:disabled { cursor: default; }
-.player-ring-avatar { width: 29px; height: 29px; display: grid; place-items: center; flex: 0 0 auto; border: 1px solid #71877a; border-radius: 50%; color: #ecd294; background: #18372a; font-size: 12px; font-weight: 800; }.player-ring-seat.current .player-ring-avatar { border-color: #efc459; }.player-ring-copy { min-width: 0; display: grid; gap: 2px; }.player-ring-copy strong, .player-ring-copy small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }.player-ring-copy strong { font-size: 10px; }.player-ring-copy small { color: var(--muted); font-size: 8px; }.player-ring-badge { margin-left: auto; color: #e6cb85; font-size: 8px; white-space: nowrap; }
-.player-ring-center .guandan-center, .player-ring-center .table-center { position: static; width: 100%; transform: none; }.player-ring-center .guandan-center { min-width: 0; }.player-ring-center .last-play > div { max-width: 100%; flex-wrap: wrap; }
-.player-ring-status { display: grid; gap: 5px; color: var(--gold); text-align: center; }.player-ring-status strong { font-size: 14px; }.player-ring-status small { color: var(--muted); font-size: 10px; }
-.game-player-ring { margin-top: 8px; }
-.new-game-player-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 6px; margin: 10px 0 0; padding: 10px 0 max(8px, env(safe-area-inset-bottom)); max-height: min(31dvh, 260px); overflow-y: auto; z-index: 8; background: linear-gradient(180deg, rgba(7,17,23,.78), rgba(7,17,23,.98) 24%); }.new-game-player-list > div, .new-game-player-list > button { display: flex; align-items: center; gap: 8px; min-height: 42px; padding: 7px 9px; border: 1px solid rgba(255,255,255,.07); border-radius: 10px; color: #e4e1d8; background: rgba(255,255,255,.025); font-size: 12px; text-align: left; }.new-game-player-list > div > span:nth-child(2), .new-game-player-list > button > span:nth-child(2) { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }.new-game-player-list strong { display: inline-flex; align-items: center; gap: 3px; color: var(--muted); font-size: 10px; }.new-game-player-list small { display: block; margin-top: 2px; color: var(--muted); font-size: 9px; }.new-game-player-list b { color: #e5ca82; font-size: 9px; white-space: nowrap; }.new-game-player-list .eliminated, .new-game-player-list .folded { opacity: .45; }.new-game-avatar { width: 28px; height: 28px; display: grid; place-items: center; flex: 0 0 auto; border: 1px solid var(--line); border-radius: 50%; color: #ecd294; background: #182d31; font-weight: 750; }
+.new-game-player-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 6px; margin: 10px 0 0; padding: 10px 0 max(8px, env(safe-area-inset-bottom)); max-height: min(31dvh, 260px); overflow-y: auto; z-index: 8; background: linear-gradient(180deg, rgba(7,17,23,.78), rgba(7,17,23,.98) 24%); }.new-game-player-list > div, .new-game-player-list > button { display: flex; align-items: center; gap: 8px; min-height: 42px; padding: 7px 9px; border: 1px solid rgba(255,255,255,.07); border-radius: 10px; color: #e4e1d8; background: rgba(255,255,255,.025); font-size: 12px; text-align: left; }.new-game-player-list > div > span:nth-child(2), .new-game-player-list > button > span:nth-child(2) { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }.new-game-player-list strong { display: inline-flex; align-items: center; gap: 3px; color: var(--muted); font-size: 10px; }.new-game-player-list small { display: block; margin-top: 2px; color: var(--muted); font-size: 9px; }.new-game-player-list b { color: #e5ca82; font-size: 9px; white-space: nowrap; }.new-game-player-list .eliminated, .new-game-player-list .folded { opacity: .45; }
 .new-game-history { margin: 12px 0; padding: 11px 12px; border: 1px solid rgba(255,255,255,.07); border-radius: 11px; background: rgba(255,255,255,.025); }.new-game-history h3 { margin: 0 0 6px; color: #d8c18e; font-size: 12px; }.new-game-history p { margin: 4px 0; color: var(--muted); font-size: 10px; line-height: 1.4; }
 .new-game-note { margin: 10px 0; color: var(--muted); font-size: 10px; text-align: center; }.investigation-note { color: #d5bd7d !important; }.role-reveal-list { justify-content: center; }
 .crossfire-identity-panel { gap: 12px; }.identity-info-section { display: grid; gap: 5px; }.identity-info-section > span, .shuffle-history-list > span { color: var(--muted); font-size: 10px; }.identity-info-section > strong { display: flex; align-items: center; gap: 6px; color: #efd69a; font-size: 14px; }.identity-info-section .intel-list { margin: 0; }.shuffle-group-line { padding: 7px 9px; border-radius: 8px; background: rgba(7,17,23,.42); }.shuffle-history-list { display: grid; gap: 4px; margin-top: 3px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,.07); }.shuffle-history-list small { color: #d8d1c3; font-size: 10px; line-height: 1.4; }.current-role { padding-top: 8px; border-top: 1px solid rgba(215,181,109,.16); }.current-role > strong { color: #d8c18e; }.final-role { padding-top: 8px; border-top: 1px solid rgba(215,181,109,.2); }.final-role > strong { color: #7bdd9d; }.liardice-point-stats { display: grid; gap: 8px; margin: 10px 0; padding: 11px 12px; border: 1px solid rgba(125,105,166,.35); border-radius: 12px; background: rgba(34,24,48,.6); }.liardice-point-stats > strong { color: #e4d2f5; font-size: 12px; }.liardice-point-stats > div { display: grid; grid-template-columns: repeat(6, 1fr); gap: 5px; }.liardice-point-stats span { display: grid; gap: 3px; padding: 6px 2px; border-radius: 7px; color: #d9cbe8; background: rgba(0,0,0,.2); text-align: center; }.liardice-point-stats b { color: #f1d58c; font-size: 11px; }.liardice-point-stats em { color: #eee7d8; font-size: 13px; font-style: normal; }.liardice-player-list strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -357,7 +607,7 @@ button:disabled { cursor: not-allowed; opacity: .42; }
   .dice-tray-grid { grid-template-columns: repeat(10,minmax(44px,1fr)); }
 }
 
-/* Minimal table treatment: flat surfaces, restrained accents, and landscape-first boards. */
+/* The old flat-theme overrides were removed. Each table keeps its own surface and depth. */
 .landscape-hint {
   display: none;
   align-items: center;
@@ -368,43 +618,9 @@ button:disabled { cursor: not-allowed; opacity: .42; }
   border: 1px solid rgba(255,255,255,.08);
   border-radius: 8px;
   color: #9eaaa8;
-  background: #0c171c;
+  background: rgba(12,23,28,.78);
   font-size: 9px;
 }
-.game-screen,
-.timebomb-screen,
-.crossfire-screen,
-.goodcop-screen,
-.liarsdice-screen { background: #071117; }
-.avalon-player-ring,
-.guandan-seat-table,
-.timebomb-workbench,
-.crossfire-intel-map,
-.goodcop-case-board,
-.dice-tray,
-.poker-table { box-shadow: none; }
-.avalon-player-ring { background: #0d2330; }
-.guandan-seat-table { background: #123426; }
-.guandan-seat-table::after { border-color: rgba(255,255,255,.08); }
-.guandan-partner-line { background: rgba(118,178,139,.34); }
-.timebomb-workbench { background: #11191c; }
-.timebomb-console { background: #0d161a; }
-.timebomb-console > strong { text-shadow: none; }
-.crossfire-intel-map { background: #091d2b; }
-.crossfire-intel-map::before,
-.crossfire-orbit i { box-shadow: none; }
-.crossfire-map-seat.in-shuffle,
-.crossfire-map-seat.selected,
-.goodcop-dossier.selected,
-.poker-seat.acting .seat-bubble,
-.guandan-seat.current .guandan-seat-avatar { box-shadow: none; }
-.goodcop-case-board { background: #111a15; }
-.dice-tray { background: #21182b; }
-.dice-tray-grid .die { background: #e6deeb; box-shadow: none; }
-.poker-table { border-width: 3px; background: #123c29; }
-.playing-card,
-.guandan-card { box-shadow: none; }
-.liarsdice-screen > .new-game-action-card { backdrop-filter: none; }
 
 @media (orientation: portrait) and (max-width: 699px) {
   .guandan-screen .landscape-hint,
@@ -470,4 +686,2410 @@ button:disabled { cursor: not-allowed; opacity: .42; }
   .poker-screen > .poker-actions { grid-column: 2; grid-row: 3; width: 100%; margin: 10px 0; padding: 15px 14px 15px 0; border-top: 0; border-left: 1px solid var(--line); background: transparent; align-self: center; }
   .poker-table { height: min(72dvh, 620px); min-height: 390px; }
   .poker-action-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Final cascade: keep the redesign above later legacy compatibility rules. */
+.avalon-screen,
+.guandan-screen,
+.timebomb-screen,
+.crossfire-screen,
+.goodcop-screen { width: min(100%, 1200px); }
+.liarsdice-screen { width: min(100%, 590px); }
+.player-nameplate { box-shadow: 0 8px 22px rgba(0,0,0,.24), inset 0 1px rgba(255,255,255,.035); }
+.crossfire-map-seat.dealer::after { display: none !important; }
+.crossfire-map-seat > .player-nameplate-seat,
+.timebomb-wire-box > .player-nameplate-seat {
+  grid-row: 1 / 3;
+  width: auto;
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  color: color-mix(in srgb, var(--table-accent) 82%, white);
+  background: none;
+  font-size: 10px;
+  letter-spacing: .08em;
+}
+.crossfire-map-seat .player-nameplate-copy,
+.timebomb-wire-box .player-nameplate-copy {
+  grid-row: 1 / 3;
+  min-width: 0;
+  width: auto;
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  display: grid;
+  gap: 2px;
+  color: inherit;
+  background: none;
+}
+.timebomb-wire-box { justify-items: stretch; }
+.crossfire-map-seat .player-nameplate-copy strong,
+.timebomb-wire-box .player-nameplate-copy strong { overflow: hidden; color: #f2f0e9; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
+.crossfire-map-seat .player-nameplate-copy small,
+.timebomb-wire-box .player-nameplate-copy small { color: #82959b; font-size: 8px; }
+.crossfire-map-seat .player-nameplate-copy em,
+.timebomb-wire-box .player-nameplate-copy em { color: color-mix(in srgb, var(--table-accent) 76%, white); font-size: 8px; font-style: normal; }
+.crossfire-map-seat .player-nameplate-badge,
+.timebomb-wire-box .player-nameplate-badge { color: color-mix(in srgb, var(--table-accent) 82%, white); font-size: 8px; }
+.dice-status-roster { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); overflow: visible; }
+.dice-status-roster > div { flex: initial; min-width: 0; }
+.dice-status-roster > div > span { width: auto; height: auto; border: 0; border-radius: 0; background: none; }
+
+@media (min-width: 700px) and (orientation: landscape) {
+  .avalon-board-layout { grid-template-columns: minmax(0,1.45fr) minmax(250px,.55fr); }
+  .guandan-screen { grid-template-columns: minmax(0,1.45fr) minmax(270px,.55fr); }
+  .timebomb-screen {
+    display: grid;
+    grid-template-columns: minmax(0,1.35fr) minmax(270px,.65fr);
+    grid-auto-rows: min-content;
+    column-gap: 16px;
+  }
+  .timebomb-screen > .game-header,
+  .timebomb-screen > .landscape-hint { grid-column: 1 / -1; }
+  .timebomb-screen > .timebomb-workbench { grid-column: 1; grid-row: 3 / span 6; display: grid; grid-template-columns: minmax(0,1.25fr) minmax(180px,.75fr); min-height: min(70dvh,590px); margin-bottom: 0; }
+  .timebomb-screen > .new-game-private,
+  .timebomb-screen > .new-game-action-card,
+  .timebomb-screen > .new-game-result,
+  .timebomb-screen > .game-history-drawer { grid-column: 2; }
+  .timebomb-wire-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .crossfire-screen,
+  .goodcop-screen { grid-template-columns: minmax(0,1.4fr) minmax(270px,.6fr); }
+  .goodcop-dossier-grid { grid-template-columns: repeat(4,minmax(0,1fr)); }
+  .goodcop-screen > .goodcop-case-board { min-height: 0; }
+  .poker-screen { grid-template-columns: minmax(0,1.5fr) minmax(260px,.5fr); }
+}
+
+@media (min-width: 700px) and (orientation: landscape) and (max-height: 520px) {
+  .game-header { min-height: 54px; padding-block: 7px; }
+  .avalon-screen > .mission-rail { margin-block: 4px; }
+  .avalon-screen > .proposal-meta { padding-block: 2px; }
+  .avalon-screen > .mission-counts { display: none; }
+  .avalon-council-table { height: calc(100dvh - 142px); min-height: 278px; }
+  .avalon-council-seat { --council-radius: min(26dvh,132px); width: 110px; min-height: 44px; padding: 5px 7px; }
+  .avalon-table-center { width: 180px; }
+  .guandan-screen > .guandan-seat-table { min-height: calc(100dvh - 112px); }
+  .guandan-seat { width: 116px; min-height: 44px; padding: 5px 7px; }
+  .guandan-hand { grid-template-rows: repeat(3,46px); }
+  .timebomb-screen > .timebomb-workbench { min-height: calc(100dvh - 82px); }
+  .timebomb-wire-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .timebomb-wire-box { min-height: 48px; padding-block: 4px; }
+  .crossfire-screen > .crossfire-intel-map { height: calc(100dvh - 78px); min-height: 310px; }
+  .crossfire-map-seat { --crossfire-radius: min(27dvh,138px); width: 105px; min-height: 43px; padding: 4px 6px; }
+  .crossfire-map-center { width: 180px; }
+  .goodcop-case-board { padding: 8px; }
+  .goodcop-dossier { min-height: 82px; padding: 6px; }
+  .public-integrity-row i { min-height: 22px; }
+  .poker-table { height: calc(100dvh - 104px); min-height: 290px; }
+  .poker-seat { width: 105px; }
+}
+
+/* v0.7.1 phone landscape pass.
+   The Android host switches every live game to landscape. This breakpoint is
+   deliberately below 700px because a phone in landscape is usually only
+   568–667 CSS pixels wide. Each table keeps its own anatomy while the board
+   and action rail share the viewport instead of forcing the player to scroll. */
+@media (orientation: landscape) and (max-width: 699px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  .app-shell {
+    min-height: 100dvh;
+    overflow-x: hidden;
+  }
+
+  .game-screen,
+  .new-game-screen {
+    width: 100%;
+    max-width: none;
+    height: 100dvh;
+    min-height: 100dvh;
+    max-height: 100dvh;
+    margin: 0;
+    overflow: hidden;
+    padding: max(4px, env(safe-area-inset-top)) max(8px, env(safe-area-inset-right)) max(4px, env(safe-area-inset-bottom)) max(8px, env(safe-area-inset-left));
+  }
+
+  .screen-pad {
+    padding-inline: max(8px, env(safe-area-inset-left)) max(8px, env(safe-area-inset-right));
+  }
+
+  .game-header,
+  .poker-header {
+    min-height: 38px;
+    height: auto;
+    padding-block: 3px;
+  }
+
+  .game-header h1,
+  .poker-header h1,
+  .guandan-header h1 {
+    font-size: 15px;
+  }
+
+  .room-header-leading {
+    gap: 6px;
+  }
+
+  .room-header-leading > div > span,
+  .poker-header span,
+  .guandan-header span {
+    font-size: 8px;
+  }
+
+  .room-back-button {
+    height: 30px;
+    padding-inline: 7px;
+    border-radius: 8px;
+    font-size: 9px;
+  }
+
+  .game-header-actions,
+  .poker-header-actions {
+    gap: 4px;
+  }
+
+  .game-header-actions > button,
+  .poker-rules-button,
+  .poker-restart-button {
+    min-width: 30px;
+    width: 30px;
+    height: 30px;
+    padding-inline: 4px;
+    border-radius: 8px;
+  }
+
+  .poker-restart-button {
+    width: auto;
+    padding-inline: 7px;
+    font-size: 9px;
+  }
+
+  .phase-copy,
+  .new-game-phase,
+  .guandan-turn {
+    padding: 3px 5px;
+    font-size: 8px;
+  }
+
+  .landscape-hint {
+    display: none !important;
+  }
+
+  .player-nameplate {
+    min-height: 38px;
+    padding: 4px 5px;
+    grid-template-columns: 18px minmax(0, 1fr) auto;
+    gap: 1px 4px;
+    border-radius: 8px;
+  }
+
+  .player-nameplate-seat {
+    font-size: 7px;
+  }
+
+  .player-nameplate-copy strong {
+    font-size: 8px;
+  }
+
+  .player-nameplate-copy small,
+  .player-nameplate-copy em,
+  .player-nameplate-badge {
+    font-size: 6.5px;
+  }
+
+  /* Avalon: the council remains the primary surface and the private command
+     rail sits beside it, so the mission track and actions remain visible. */
+  .avalon-screen {
+    display: grid;
+    grid-template-rows: auto auto auto minmax(0, 1fr);
+    gap: 3px;
+    align-content: start;
+  }
+
+  .avalon-screen > .mission-rail {
+    width: min(420px, 62vw);
+    height: 27px;
+    margin: 0 auto;
+  }
+
+  .mission-node {
+    width: 26px;
+    height: 26px;
+    font-size: 10px;
+  }
+
+  .avalon-screen > .proposal-meta {
+    width: 100%;
+    padding-inline: 4px;
+    font-size: 8px;
+  }
+
+  .mission-counts {
+    gap: 3px;
+    margin: 0;
+  }
+
+  .mission-counts span {
+    padding: 3px 4px;
+    font-size: 7px;
+  }
+
+  .mission-counts strong {
+    font-size: 9px;
+  }
+
+  .avalon-board-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(176px, 34%);
+    gap: 6px;
+    min-height: 0;
+    margin: 0;
+  }
+
+  .avalon-council-table {
+    height: calc(100dvh - 101px);
+    min-height: 238px;
+    border-radius: 20px;
+  }
+
+  .avalon-council-seat {
+    --council-radius: min(27dvh, 100px);
+    width: min(86px, 15vw);
+    min-height: 38px;
+    padding: 4px 5px;
+  }
+
+  .avalon-council-seat strong {
+    font-size: 8px;
+  }
+
+  .avalon-council-seat small {
+    font-size: 6.5px;
+  }
+
+  .avalon-table-center {
+    width: min(170px, 36%);
+    padding: 7px 5px;
+    border-radius: 10px;
+  }
+
+  .avalon-table-center > span,
+  .avalon-table-center > small,
+  .avalon-table-center > div {
+    font-size: 7px;
+  }
+
+  .avalon-table-center > strong {
+    font-size: 12px;
+  }
+
+  .avalon-command-panel {
+    min-width: 0;
+    min-height: 0;
+    gap: 5px;
+    overflow: auto;
+  }
+
+  .avalon-command-panel .identity-panel {
+    min-height: 56px;
+    margin: 0;
+    padding: 7px;
+    grid-template-columns: 30px minmax(0, 1fr);
+    gap: 6px;
+  }
+
+  .avalon-command-panel .identity-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .avalon-command-panel .identity-panel span {
+    font-size: 7px;
+  }
+
+  .avalon-command-panel .identity-panel h2 {
+    font-size: 14px;
+  }
+
+  .avalon-command-panel .identity-panel p {
+    margin-top: 2px;
+    font-size: 7px;
+  }
+
+  .avalon-action-dock {
+    min-width: 0;
+    margin: 0;
+    padding: 7px;
+    border-radius: 10px;
+  }
+
+  .avalon-action-dock > header {
+    margin-bottom: 5px;
+  }
+
+  .avalon-action-dock > header span {
+    font-size: 7px;
+  }
+
+  .avalon-action-dock > header strong {
+    font-size: 10px;
+  }
+
+  .avalon-action-dock button,
+  .assassinate-panel button {
+    min-height: 34px;
+    padding-inline: 4px;
+    font-size: 9px;
+  }
+
+  .split-actions {
+    gap: 4px;
+  }
+
+  /* Guandan: felt table on the left, compressed hand/action rail on the
+     right. Seven card columns keep a ten-card hand on one compact surface. */
+  .guandan-screen {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(176px, 34%);
+    grid-template-rows: auto auto minmax(0, 1fr) auto;
+    gap: 4px 6px;
+    align-content: start;
+  }
+
+  .guandan-screen > .game-header,
+  .guandan-screen > .guandan-scorebar {
+    grid-column: 1 / -1;
+  }
+
+  .guandan-scorebar {
+    gap: 3px;
+    margin: 0;
+  }
+
+  .guandan-scorebar span {
+    padding: 4px 6px;
+    font-size: 7px;
+  }
+
+  .guandan-scorebar strong {
+    font-size: 10px;
+  }
+
+  .guandan-scorebar small {
+    font-size: 7px;
+  }
+
+  .guandan-screen > .guandan-seat-table {
+    grid-column: 1;
+    grid-row: 3 / span 2;
+    height: calc(100dvh - 94px);
+    min-height: 238px;
+    margin: 0;
+    border-radius: 20px;
+  }
+
+  .guandan-seat {
+    width: min(92px, 15vw);
+    min-height: 38px;
+    padding: 4px 5px;
+  }
+
+  .guandan-seat-avatar {
+    display: none;
+  }
+
+  .guandan-seat strong {
+    max-width: 100%;
+    font-size: 8px;
+  }
+
+  .guandan-seat small,
+  .guandan-seat b {
+    font-size: 6.5px;
+  }
+
+  .guandan-seat-table .guandan-center {
+    width: 44%;
+    min-width: 108px;
+    padding: 7px 5px;
+  }
+
+  .guandan-screen > .guandan-hand-panel {
+    grid-column: 2;
+    grid-row: 3;
+    min-width: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 6px;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+
+  .guandan-hand-heading {
+    margin-bottom: 3px;
+  }
+
+  .guandan-hand-heading span {
+    font-size: 9px;
+  }
+
+  .guandan-hand-heading small {
+    max-width: 55%;
+    font-size: 6.5px;
+  }
+
+  .guandan-hand {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+    grid-template-rows: none;
+    gap: 3px 2px;
+    max-height: none;
+    overflow: visible;
+    padding: 4px 0;
+  }
+
+  .guandan-hand .guandan-card-button {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .guandan-card {
+    width: min(100%, 28px);
+    height: 38px;
+    padding: 3px 2px;
+    justify-self: center;
+  }
+
+  .guandan-card strong {
+    font-size: 10px;
+  }
+
+  .guandan-card i {
+    font-size: 12px;
+  }
+
+  .guandan-screen > .guandan-actions,
+  .guandan-screen > .guandan-result {
+    grid-column: 2;
+    grid-row: 4;
+    min-width: 0;
+    margin: 0;
+    padding: 3px 0 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .guandan-actions {
+    gap: 4px;
+  }
+
+  .guandan-actions button {
+    min-height: 34px;
+    padding-inline: 4px;
+    font-size: 9px;
+  }
+
+  /* TimeBomb: industrial workbench and console occupy the left canvas, with
+     private wire information and the current action kept in the right rail. */
+  .timebomb-screen {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(176px, 34%);
+    grid-auto-rows: min-content;
+    gap: 5px 6px;
+    align-content: start;
+  }
+
+  .timebomb-screen > .game-header {
+    grid-column: 1 / -1;
+  }
+
+  .timebomb-screen > .timebomb-workbench {
+    grid-column: 1;
+    grid-row: 2 / span 6;
+    height: calc(100dvh - 53px);
+    min-height: 238px;
+    margin: 0;
+    padding: 6px;
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+    gap: 5px;
+    overflow: hidden;
+    border-radius: 18px;
+  }
+
+  .timebomb-wire-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 3px;
+    min-height: 0;
+    align-content: start;
+  }
+
+  .timebomb-wire-box {
+    min-height: 42px;
+    padding: 3px 2px;
+    grid-template-columns: 16px minmax(0, 1fr) auto;
+    gap: 2px;
+    border-radius: 7px;
+  }
+
+  .timebomb-wire-box > span {
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    font-size: 8px;
+  }
+
+  .timebomb-wire-box strong {
+    font-size: 7px;
+  }
+
+  .timebomb-wire-box small {
+    font-size: 6px;
+  }
+
+  .timebomb-console {
+    min-height: 66px;
+    margin: 0;
+    padding: 5px;
+    gap: 2px;
+  }
+
+  .timebomb-console > span,
+  .timebomb-console > em,
+  .timebomb-console > small {
+    font-size: 7px;
+  }
+
+  .timebomb-console > strong {
+    font-size: 24px;
+  }
+
+  .timebomb-screen > .new-game-private,
+  .timebomb-screen > .new-game-action-card,
+  .timebomb-screen > .new-game-result,
+  .timebomb-screen > .game-history-drawer {
+    grid-column: 2;
+    min-width: 0;
+    margin: 0;
+    padding: 6px;
+    border-radius: 9px;
+  }
+
+  .timebomb-screen > .new-game-private > strong,
+  .timebomb-screen > .new-game-action-card h2 {
+    font-size: 9px;
+  }
+
+  .timebomb-screen > .new-game-private > small,
+  .timebomb-screen > .new-game-action-card p,
+  .timebomb-screen > .new-game-result span,
+  .timebomb-screen > .game-history-drawer summary {
+    font-size: 7px;
+  }
+
+  .timebomb-screen .wire-chip,
+  .timebomb-screen .game-history-drawer p {
+    font-size: 7px;
+  }
+
+  .timebomb-screen .new-game-action-card button {
+    min-height: 34px;
+    padding-inline: 4px;
+    font-size: 9px;
+  }
+
+  .unknown-wire-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(45px, 1fr));
+    gap: 3px;
+    overflow: visible;
+    padding: 1px 0 3px;
+  }
+
+  .unknown-wire-row button {
+    min-width: 0;
+    min-height: 40px;
+    padding: 3px 2px;
+    font-size: 7px;
+  }
+
+  .unknown-wire-row button span {
+    width: 25px;
+    height: 7px;
+  }
+
+  /* Crossfire: the tactical map stays large enough for 5–10 seats, while the
+     private role ledger and targeting action use the adjacent rail. */
+  .crossfire-screen {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(176px, 34%);
+    grid-auto-rows: min-content;
+    gap: 5px 6px;
+    align-content: start;
+  }
+
+  .crossfire-screen > .game-header {
+    grid-column: 1 / -1;
+  }
+
+  .crossfire-screen > .crossfire-intel-map {
+    grid-column: 1;
+    grid-row: 2 / span 6;
+    height: calc(100dvh - 53px);
+    min-height: 238px;
+    margin: 0;
+    border-radius: 20px;
+  }
+
+  .crossfire-map-seat {
+    --crossfire-radius: min(27dvh, 104px);
+    width: min(78px, 13vw);
+    min-height: 38px;
+    padding: 4px;
+    grid-template-columns: 18px minmax(0, 1fr);
+    gap: 1px 3px;
+  }
+
+  .crossfire-map-seat > span {
+    width: 18px;
+    height: 18px;
+    font-size: 7px;
+  }
+
+  .crossfire-map-seat strong {
+    font-size: 7px;
+  }
+
+  .crossfire-map-seat small {
+    font-size: 6px;
+  }
+
+  .crossfire-map-center {
+    width: 38%;
+    padding: 7px 4px;
+    border-radius: 10px;
+  }
+
+  .crossfire-map-center strong {
+    font-size: 11px;
+  }
+
+  .crossfire-map-center small,
+  .crossfire-map-center span {
+    font-size: 7px;
+  }
+
+  .crossfire-screen > .crossfire-identity-panel,
+  .crossfire-screen > .new-game-action-card,
+  .crossfire-screen > .new-game-result {
+    grid-column: 2;
+    min-width: 0;
+    margin: 0;
+    padding: 7px;
+    border-radius: 9px;
+  }
+
+  .crossfire-identity-panel {
+    gap: 7px;
+    max-height: calc(100dvh - 83px);
+    overflow: auto;
+  }
+
+  .identity-info-section {
+    gap: 3px;
+  }
+
+  .identity-info-section > span,
+  .shuffle-history-list > span {
+    font-size: 7px;
+  }
+
+  .identity-info-section > strong,
+  .shuffle-history-list small,
+  .intel-list span {
+    font-size: 8px;
+  }
+
+  .shuffle-group-line {
+    padding: 4px 5px;
+  }
+
+  .crossfire-screen > .new-game-action-card h2 {
+    font-size: 9px;
+  }
+
+  .crossfire-screen > .new-game-action-card p,
+  .crossfire-screen > .new-game-result p,
+  .crossfire-screen > .new-game-result span {
+    font-size: 7px;
+  }
+
+  .crossfire-screen > .new-game-action-card button {
+    min-height: 34px;
+    padding-inline: 4px;
+    font-size: 9px;
+  }
+
+  /* Good Cop Bad Cop: the cork evidence board uses four compact columns; the
+     private integrity cards and action flow remain in the side rail. */
+  .goodcop-screen {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(176px, 34%);
+    grid-auto-rows: min-content;
+    gap: 5px 6px;
+    align-content: start;
+  }
+
+  .goodcop-screen > .game-header {
+    grid-column: 1 / -1;
+  }
+
+  .goodcop-screen > .goodcop-case-board {
+    grid-column: 1;
+    grid-row: 2 / span 6;
+    height: calc(100dvh - 53px);
+    min-height: 238px;
+    margin: 0;
+    padding: 6px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: 5px;
+    overflow: hidden;
+    border-radius: 18px;
+  }
+
+  .goodcop-case-status {
+    min-height: 42px;
+    padding: 5px 6px;
+    gap: 2px 5px;
+  }
+
+  .goodcop-case-status > span,
+  .goodcop-case-status > small {
+    font-size: 6.5px;
+  }
+
+  .goodcop-case-status > strong {
+    font-size: 9px;
+  }
+
+  .goodcop-dossier-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 3px;
+    min-height: 0;
+    margin-top: 0;
+    align-content: start;
+  }
+
+  .goodcop-dossier {
+    min-height: 58px;
+    padding: 4px;
+    border-radius: 7px;
+  }
+
+  .goodcop-dossier > header {
+    gap: 3px;
+  }
+
+  .goodcop-dossier > header > span {
+    width: 18px;
+    height: 18px;
+    font-size: 7px;
+  }
+
+  .goodcop-dossier header strong {
+    font-size: 7px;
+  }
+
+  .goodcop-dossier header small,
+  .goodcop-dossier header b {
+    font-size: 6px;
+  }
+
+  .public-integrity-row {
+    gap: 2px;
+    margin-top: 4px;
+  }
+
+  .public-integrity-row i {
+    min-height: 18px;
+    padding: 2px;
+    font-size: 5.5px;
+  }
+
+  .goodcop-screen > .new-game-private,
+  .goodcop-screen > .new-game-action-card,
+  .goodcop-screen > .waiting-action,
+  .goodcop-screen > .new-game-history,
+  .goodcop-screen > .new-game-result {
+    grid-column: 2;
+    min-width: 0;
+    margin: 0;
+    padding: 6px;
+    border-radius: 9px;
+  }
+
+  .goodcop-screen > .new-game-private > strong,
+  .goodcop-screen > .new-game-action-card h2,
+  .goodcop-screen > .new-game-history h3 {
+    font-size: 9px;
+  }
+
+  .goodcop-screen > .new-game-private > small,
+  .goodcop-screen > .new-game-private p,
+  .goodcop-screen > .new-game-action-card p,
+  .goodcop-screen > .new-game-history p,
+  .goodcop-screen > .new-game-result p {
+    font-size: 7px;
+  }
+
+  .goodcop-screen .integrity-cards,
+  .goodcop-screen .new-game-button-grid {
+    gap: 3px;
+  }
+
+  .goodcop-screen .new-game-action-card button,
+  .goodcop-screen .integrity-index-picker button {
+    min-height: 32px;
+    padding-inline: 3px;
+    font-size: 8px;
+  }
+
+  /* Dice simulator: five-column status strip, a purple private tray, and a
+     compact action/results rail. No horizontal roster scrolling is needed. */
+  .liarsdice-screen {
+    display: grid;
+    grid-template-columns: minmax(0, 1.12fr) minmax(176px, .88fr);
+    grid-template-rows: auto auto auto minmax(0, 1fr) auto;
+    grid-auto-rows: min-content;
+    gap: 4px 6px;
+    align-content: start;
+    width: 100%;
+    max-width: none;
+  }
+
+  .liarsdice-screen > .game-header,
+  .liarsdice-screen > .new-game-summary,
+  .liarsdice-screen > .dice-status-roster {
+    grid-column: 1 / -1;
+  }
+
+  .new-game-summary {
+    gap: 4px;
+    margin: 0;
+    padding: 5px 6px;
+    font-size: 7px;
+  }
+
+  .dice-status-roster {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 3px;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .dice-status-roster > div {
+    min-height: 29px;
+    padding: 4px;
+    grid-template-columns: 15px minmax(0, 1fr);
+    gap: 1px 3px;
+    border-radius: 7px;
+  }
+
+  .dice-status-roster span {
+    width: auto;
+    height: auto;
+    font-size: 6.5px;
+  }
+
+  .dice-status-roster strong {
+    font-size: 6.5px;
+  }
+
+  .dice-status-roster small {
+    font-size: 5.5px;
+  }
+
+  .liarsdice-screen > .dice-tray {
+    grid-column: 1;
+    grid-row: 4 / span 3;
+    height: calc(100dvh - 104px);
+    min-height: 178px;
+    margin: 0;
+    padding: 8px;
+    border-radius: 18px;
+  }
+
+  .dice-tray > header {
+    font-size: 9px;
+  }
+
+  .dice-tray > header span,
+  .dice-tray > small {
+    font-size: 6.5px;
+  }
+
+  .dice-tray-grid {
+    grid-template-columns: repeat(5, minmax(24px, 1fr));
+    gap: 4px;
+    margin: 10px 0;
+  }
+
+  .dice-tray-grid .die {
+    max-width: 40px;
+    justify-self: center;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+
+  .liarsdice-screen > .new-game-action-card,
+  .liarsdice-screen > .new-game-note,
+  .liarsdice-screen > .liardice-point-stats,
+  .liarsdice-screen > .liardice-results {
+    grid-column: 2;
+    min-width: 0;
+    margin: 0;
+    padding: 6px;
+    border-radius: 9px;
+  }
+
+  .liarsdice-screen > .new-game-action-card {
+    grid-row: 4;
+    position: static;
+  }
+
+  .liarsdice-screen > .new-game-note {
+    grid-row: 5;
+    font-size: 6.5px;
+  }
+
+  .liarsdice-screen > .new-game-action-card h2,
+  .liarsdice-screen > .liardice-point-stats > strong,
+  .liarsdice-screen > .liardice-results > strong {
+    font-size: 9px;
+  }
+
+  .liarsdice-screen > .new-game-action-card p,
+  .liarsdice-screen > .liardice-point-stats b,
+  .liarsdice-screen > .liardice-point-stats em,
+  .liarsdice-screen > .liardice-results b,
+  .liarsdice-screen > .liardice-results em {
+    font-size: 7px;
+  }
+
+  .liarsdice-screen > .new-game-action-card button {
+    min-height: 34px;
+    padding-inline: 4px;
+    font-size: 9px;
+  }
+
+  .liardice-point-stats {
+    gap: 4px;
+  }
+
+  .liardice-point-stats > div {
+    gap: 2px;
+  }
+
+  .liardice-point-stats span {
+    padding: 3px 1px;
+  }
+
+  .liardice-results > div {
+    grid-template-columns: 1fr;
+    gap: 3px;
+  }
+
+  .liardice-results span {
+    padding: 4px;
+  }
+
+  /* Poker: the oval felt table owns the left side, while the complete action
+     rail stays reachable on the right. */
+  .poker-screen {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(176px, .42fr);
+    grid-template-rows: auto auto minmax(0, 1fr);
+    gap: 3px 6px;
+    height: 100dvh;
+    min-height: 100dvh;
+    overflow: hidden;
+  }
+
+  .poker-screen > .poker-header,
+  .poker-screen > .poker-hand-meta {
+    grid-column: 1 / -1;
+    width: 100%;
+    max-width: none;
+  }
+
+  .poker-screen > .poker-hand-meta {
+    margin: 0;
+    padding-block: 1px;
+    font-size: 7px;
+  }
+
+  .poker-screen > .poker-stage {
+    grid-column: 1;
+    grid-row: 3;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    padding: 0;
+  }
+
+  .poker-table {
+    height: calc(100dvh - 82px);
+    min-height: 232px;
+    border-width: 5px;
+  }
+
+  .poker-table .playing-card {
+    width: 39px;
+    height: 55px;
+    padding: 3px;
+  }
+
+  .poker-table .playing-card strong {
+    font-size: 12px;
+  }
+
+  .poker-table .playing-card span {
+    font-size: 13px;
+  }
+
+  .poker-seat {
+    width: 74px;
+  }
+
+  .seat-bubble {
+    min-width: 62px;
+    padding: 4px 5px;
+    border-radius: 7px;
+  }
+
+  .seat-bubble strong {
+    font-size: 8px;
+  }
+
+  .seat-bubble span {
+    font-size: 9px;
+  }
+
+  .seat-bubble small {
+    font-size: 6.5px;
+  }
+
+  .seat-marks {
+    top: -12px;
+    right: -5px;
+  }
+
+  .seat-marks i,
+  .seat-marks b {
+    min-width: 14px;
+    height: 14px;
+    font-size: 6px;
+  }
+
+  .poker-screen > .poker-actions {
+    grid-column: 2;
+    grid-row: 3;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 5px 0 5px 0;
+    border-top: 0;
+    border-left: 1px solid var(--line);
+    background: transparent;
+    align-self: stretch;
+    overflow: auto;
+  }
+
+  .turn-line {
+    display: grid;
+    gap: 3px;
+    margin-bottom: 5px;
+    font-size: 7px;
+  }
+
+  .poker-action-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px;
+  }
+
+  .poker-action-grid button {
+    min-height: 36px;
+    padding-inline: 3px;
+    border-radius: 7px;
+    font-size: 9px;
+  }
+
+  .raise-control {
+    grid-template-columns: auto minmax(0, 1fr) 36px;
+    gap: 4px;
+    margin-top: 5px;
+    padding: 5px;
+    font-size: 7px;
+  }
+
+  .hand-result {
+    font-size: 8px;
+  }
+}
+
+/* Very short landscape phones need a second density step. The table stays
+   complete; only chrome and labels shrink, so actions remain touchable. */
+@media (orientation: landscape) and (max-width: 699px) and (max-height: 420px) {
+  .game-header,
+  .poker-header {
+    min-height: 34px;
+    padding-block: 2px;
+  }
+
+  .game-header h1,
+  .poker-header h1,
+  .guandan-header h1 {
+    font-size: 13px;
+  }
+
+  .room-back-button,
+  .game-header-actions > button,
+  .poker-rules-button,
+  .poker-restart-button {
+    height: 27px;
+    min-height: 27px;
+  }
+
+  .avalon-screen > .mission-rail {
+    height: 23px;
+  }
+
+  .mission-node {
+    width: 22px;
+    height: 22px;
+    font-size: 8px;
+  }
+
+  .avalon-council-table,
+  .guandan-screen > .guandan-seat-table,
+  .timebomb-screen > .timebomb-workbench,
+  .crossfire-screen > .crossfire-intel-map,
+  .goodcop-screen > .goodcop-case-board {
+    min-height: 210px;
+  }
+
+  .avalon-council-table {
+    height: calc(100dvh - 86px);
+  }
+
+  .avalon-council-seat {
+    --council-radius: min(22dvh, 78px);
+    width: min(78px, 15vw);
+    min-height: 32px;
+  }
+
+  .avalon-table-center {
+    width: min(145px, 36%);
+    padding: 5px 4px;
+  }
+
+  .guandan-screen > .guandan-seat-table {
+    height: calc(100dvh - 80px);
+  }
+
+  .guandan-seat {
+    width: min(78px, 15vw);
+    min-height: 32px;
+  }
+
+  .guandan-hand {
+    gap: 2px 1px;
+    padding-block: 2px;
+  }
+
+  .guandan-card {
+    height: 32px;
+    max-width: 24px;
+  }
+
+  .guandan-card strong {
+    font-size: 8px;
+  }
+
+  .guandan-card i {
+    font-size: 10px;
+  }
+
+  .timebomb-screen > .timebomb-workbench {
+    height: calc(100dvh - 46px);
+  }
+
+  .timebomb-wire-box {
+    min-height: 36px;
+  }
+
+  .timebomb-console {
+    min-height: 54px;
+  }
+
+  .timebomb-console > strong {
+    font-size: 20px;
+  }
+
+  .crossfire-screen > .crossfire-intel-map,
+  .goodcop-screen > .goodcop-case-board {
+    height: calc(100dvh - 46px);
+  }
+
+  .crossfire-map-seat {
+    --crossfire-radius: min(22dvh, 82px);
+    min-height: 32px;
+  }
+
+  .goodcop-dossier {
+    min-height: 48px;
+  }
+
+  .public-integrity-row i {
+    min-height: 14px;
+  }
+
+  .liarsdice-screen > .dice-tray {
+    height: calc(100dvh - 89px);
+    min-height: 160px;
+  }
+
+  .dice-tray-grid {
+    margin-block: 6px;
+  }
+
+  .poker-table {
+    height: calc(100dvh - 70px);
+    min-height: 205px;
+  }
+
+  .poker-table .playing-card {
+    width: 34px;
+    height: 48px;
+  }
+}
+
+/* v0.7.0 visual tabletop pass — reference-led surfaces, readable hierarchy, and safe density. */
+:root {
+  --ink-0: #070b0e;
+  --ink-1: #0c1418;
+  --ink-2: #111d22;
+  --ink-3: #1a272b;
+  --paper: #f4efe4;
+  --muted-2: #8e9ba0;
+  --gold-bright: #e7bf6a;
+  --gold-dim: #8d6d36;
+  --green-bright: #67cf92;
+}
+
+body {
+  background: #070d11;
+}
+
+.app-shell {
+  background:
+    radial-gradient(circle at 50% -12%, rgba(72, 105, 118, .18), transparent 34%),
+    linear-gradient(150deg, #070c10 0%, #0b1419 58%, #071015 100%);
+}
+
+.game-screen,
+.new-game-screen {
+  color: var(--paper);
+}
+
+.game-header,
+.poker-header {
+  min-height: 58px;
+  padding-block: 9px;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+.game-header h1,
+.poker-header h1,
+.guandan-header h1 {
+  color: #f7edd8;
+  font-size: 19px;
+  letter-spacing: .02em;
+}
+
+.room-header-leading > div > span,
+.poker-header span,
+.guandan-header span {
+  color: #90a0a4;
+  font-size: 10px;
+}
+
+.game-header-actions,
+.poker-header-actions {
+  gap: 6px;
+}
+
+.game-header-actions > button,
+.poker-rules-button,
+.poker-restart-button {
+  border-color: rgba(231,191,106,.28);
+  background: rgba(21,31,34,.86);
+  color: var(--gold-bright);
+}
+
+.phase-copy,
+.new-game-phase,
+.guandan-turn {
+  padding: 5px 8px;
+  border: 1px solid rgba(231,191,106,.18);
+  border-radius: 7px;
+  color: #d9b96d !important;
+  background: rgba(28,28,20,.42);
+  font-size: 9px;
+}
+
+.player-nameplate {
+  min-height: 48px;
+  padding: 6px 8px;
+  border: 1px solid rgba(226,220,196,.16);
+  border-radius: 10px;
+  background: linear-gradient(145deg, rgba(24,31,33,.96), rgba(8,14,17,.96));
+  box-shadow: 0 7px 20px rgba(0,0,0,.35), inset 0 1px rgba(255,255,255,.06);
+  transition: border-color .16s ease, transform .16s ease, background .16s ease, box-shadow .16s ease;
+}
+
+.player-nameplate:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.player-nameplate-seat {
+  width: 22px;
+  color: var(--gold-bright);
+  font-size: 9px;
+  letter-spacing: .08em;
+}
+
+.player-nameplate-copy strong {
+  color: #f3efe5;
+  font-size: 10px;
+  letter-spacing: .01em;
+}
+
+.player-nameplate-copy small {
+  color: #9aa5a5;
+  font-size: 8px;
+}
+
+.player-nameplate-copy em {
+  color: color-mix(in srgb, var(--table-accent, #e5bc66) 82%, white);
+  font-size: 8px;
+}
+
+.player-nameplate.is-current {
+  border-color: color-mix(in srgb, var(--table-accent, #e5bc66) 74%, white 8%);
+  background: linear-gradient(145deg, color-mix(in srgb, var(--table-accent, #e5bc66) 18%, #121b1e), #0a1215);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--table-accent, #e5bc66) 18%, transparent), 0 8px 22px rgba(0,0,0,.42);
+}
+
+.player-nameplate.is-selected {
+  border-color: #6dd49a;
+  background: linear-gradient(145deg, #183e2c, #0d2118);
+  box-shadow: 0 0 0 2px rgba(109,212,154,.14), 0 8px 22px rgba(0,0,0,.35);
+}
+
+.new-game-private,
+.new-game-action-card,
+.new-game-result,
+.game-actions,
+.guandan-hand-panel,
+.poker-actions {
+  border-color: rgba(226,220,196,.14);
+  background: linear-gradient(145deg, rgba(19,30,34,.95), rgba(9,16,19,.95));
+  box-shadow: 0 12px 30px rgba(0,0,0,.2), inset 0 1px rgba(255,255,255,.035);
+}
+
+.new-game-action-card h2,
+.game-actions > header strong,
+.guandan-hand-heading span {
+  color: #f0d48f;
+}
+
+.new-game-action-card p,
+.new-game-private > small,
+.waiting-action,
+.new-game-note {
+  color: #9ba7a8;
+}
+
+.primary-button,
+.success-button {
+  border-color: #d6ad5b;
+  background: linear-gradient(180deg, #d8ae5e, #9f7531);
+  color: #1c170d;
+  box-shadow: inset 0 1px rgba(255,255,255,.35), 0 7px 14px rgba(0,0,0,.2);
+}
+
+.primary-button:hover:not(:disabled),
+.success-button:hover:not(:disabled) {
+  background: linear-gradient(180deg, #edc873, #b4853a);
+}
+
+.secondary-button {
+  border-color: rgba(218,218,204,.22);
+  background: linear-gradient(180deg, #1c2b31, #101b20);
+}
+
+.danger-button {
+  border-color: #b75951;
+  background: linear-gradient(180deg, #863b35, #58221f);
+}
+
+/* Avalon: a quiet council board with the mission track and command rail as one composition. */
+.avalon-screen {
+  --table-accent: #e0b866;
+  background: radial-gradient(circle at 50% 0, rgba(125,91,44,.17), transparent 35%);
+}
+
+.avalon-council-table {
+  min-height: 420px;
+  height: clamp(420px, 100vw, 590px);
+  border: 1px solid rgba(221,185,103,.46);
+  border-radius: 28px;
+  background-color: #111416;
+  background-image: linear-gradient(rgba(6,10,12,.4), rgba(6,10,12,.6)), url('/assets/game-surfaces-atlas.jpg');
+  background-size: 300% 200%;
+  background-position: 0% 0%;
+  background-repeat: no-repeat;
+  box-shadow: inset 0 0 70px rgba(0,0,0,.62), 0 22px 46px rgba(0,0,0,.36);
+}
+
+.avalon-council-table::before {
+  inset: 9%;
+  border-color: rgba(231,193,111,.34);
+  box-shadow: inset 0 0 0 9px rgba(21,19,15,.22), 0 0 0 1px rgba(0,0,0,.45);
+}
+
+.avalon-table-rings i {
+  border-color: rgba(236,211,159,.18);
+}
+
+.avalon-table-center {
+  width: min(226px, 43%);
+  padding: 15px 12px;
+  border: 1px solid rgba(231,193,111,.42);
+  border-radius: 13px;
+  background: linear-gradient(145deg, rgba(32,29,22,.94), rgba(11,16,18,.96));
+  box-shadow: 0 14px 28px rgba(0,0,0,.42), inset 0 1px rgba(255,255,255,.08);
+}
+
+.avalon-table-center > strong {
+  color: #f6dfa2;
+  font-size: 17px;
+}
+
+.avalon-council-seat {
+  --council-radius: clamp(128px, 35vw, 225px);
+  width: min(112px, 28vw);
+}
+
+.avalon-command-panel .identity-panel {
+  border-color: rgba(229,187,99,.3);
+  background: linear-gradient(145deg, #17252a, #0b151a);
+}
+
+.avalon-action-dock {
+  border-color: rgba(229,187,99,.27);
+  background: linear-gradient(145deg, #1c211b, #0b1518);
+}
+
+.mission-node {
+  border-color: rgba(227,190,104,.4);
+  background: #131b1d;
+  box-shadow: inset 0 1px rgba(255,255,255,.07), 0 4px 10px rgba(0,0,0,.25);
+}
+
+.mission-node.current { border-color: #e7bd65; background: #3d3020; color: #f6da91; }
+.mission-node.success { background: #23573a; border-color: #6fd294; }
+.mission-node.failure { background: #662e2c; border-color: #de7a6d; }
+
+/* Guandan: green felt, opposing partners and the hand rail remain visible together. */
+.guandan-screen {
+  --table-accent: #e4bc62;
+  background: radial-gradient(circle at 48% 10%, rgba(42,110,69,.18), transparent 38%);
+}
+
+.guandan-scorebar span {
+  border: 1px solid rgba(115,207,148,.2);
+  background: linear-gradient(145deg, #173d2a, #0d2519);
+  box-shadow: inset 0 1px rgba(255,255,255,.04);
+}
+
+.guandan-scorebar span:nth-child(2) {
+  border-color: rgba(224,178,92,.24);
+  background: linear-gradient(145deg, #3a2b18, #241b12);
+}
+
+.guandan-seat-table {
+  min-height: 405px;
+  border-color: rgba(224,185,93,.42);
+  background-color: #123a28;
+  background-image: linear-gradient(rgba(5,22,13,.24), rgba(5,22,13,.4)), url('/assets/game-surfaces-atlas.jpg');
+  background-size: 300% 200%;
+  background-position: 50% 0%;
+  background-repeat: no-repeat;
+  box-shadow: inset 0 0 68px rgba(0,0,0,.54), 0 22px 42px rgba(0,0,0,.34);
+}
+
+.guandan-seat-table::after {
+  inset: 11%;
+  border-color: rgba(229,192,110,.24);
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.24);
+}
+
+.guandan-seat {
+  width: min(144px, 32vw);
+}
+
+.guandan-seat.is-current {
+  box-shadow: 0 0 0 2px rgba(232,190,96,.18), 0 8px 22px rgba(0,0,0,.35);
+}
+
+.guandan-center {
+  border-color: rgba(232,194,105,.35);
+  background: linear-gradient(145deg, rgba(14,47,29,.94), rgba(7,24,17,.95));
+  box-shadow: inset 0 1px rgba(255,255,255,.06), 0 15px 32px rgba(0,0,0,.35);
+}
+
+.guandan-card {
+  border-color: #c7bda4;
+  background: linear-gradient(155deg, #fffdf3, #d7d0bc);
+  box-shadow: 0 6px 12px rgba(0,0,0,.34), inset 0 1px white;
+}
+
+/* TimeBomb: a compact industrial workbench, with the console as the visual anchor. */
+.timebomb-screen {
+  --table-accent: #f09261;
+  background: radial-gradient(circle at 50% 0, rgba(153,75,39,.2), transparent 36%);
+}
+
+.timebomb-workbench {
+  border-color: rgba(241,143,92,.45);
+  background-color: #282626;
+  background-image: linear-gradient(rgba(13,15,17,.34), rgba(13,15,17,.58)), url('/assets/game-surfaces-atlas.jpg');
+  background-size: 300% 200%;
+  background-position: 100% 0%;
+  background-repeat: no-repeat;
+  box-shadow: inset 0 0 58px rgba(0,0,0,.58), 0 22px 46px rgba(0,0,0,.36);
+}
+
+.timebomb-wire-box {
+  border-color: rgba(231,218,194,.18);
+  background: linear-gradient(145deg, rgba(25,28,29,.96), rgba(9,13,15,.96));
+  box-shadow: inset 0 1px rgba(255,255,255,.06), 0 7px 16px rgba(0,0,0,.26);
+}
+
+.timebomb-wire-box.is-current {
+  border-color: #efb55e;
+  box-shadow: 0 0 0 2px rgba(239,181,94,.16), 0 8px 20px rgba(0,0,0,.38);
+}
+
+.timebomb-console {
+  border-color: rgba(240,147,93,.48);
+  background-color: #292929;
+  background-image: linear-gradient(rgba(17,18,19,.26), rgba(17,18,19,.54)), url('/assets/game-surfaces-atlas.jpg');
+  background-size: 300% 200%;
+  background-position: 100% 0%;
+  background-repeat: no-repeat;
+  box-shadow: inset 0 0 38px rgba(0,0,0,.65), 0 12px 26px rgba(0,0,0,.38);
+}
+
+.timebomb-console > strong {
+  text-shadow: 0 0 17px rgba(255,82,50,.48);
+}
+
+/* Crossfire: tactical map first, identity information second. */
+.crossfire-screen {
+  --table-accent: #65c5f4;
+  background: radial-gradient(circle at 50% 0, rgba(29,113,174,.22), transparent 38%);
+}
+
+.crossfire-intel-map {
+  border-color: rgba(97,190,241,.5);
+  background-color: #102f4a;
+  background-image: linear-gradient(rgba(5,20,33,.42), rgba(5,20,33,.7)), url('/assets/game-surfaces-atlas.jpg');
+  background-size: 300% 200%;
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  box-shadow: inset 0 0 80px rgba(0,0,0,.64), 0 22px 46px rgba(0,0,0,.38);
+}
+
+.crossfire-intel-map::before {
+  inset: 7%;
+  border-color: rgba(104,205,255,.4);
+  box-shadow: 0 0 28px rgba(60,176,241,.18);
+}
+
+.crossfire-orbit i {
+  border-color: rgba(100,197,245,.22);
+  box-shadow: 0 0 16px rgba(73,180,234,.1);
+}
+
+.crossfire-map-center {
+  border-color: rgba(106,202,251,.34);
+  background: linear-gradient(145deg, rgba(8,35,57,.94), rgba(6,18,29,.96));
+  box-shadow: inset 0 1px rgba(255,255,255,.07), 0 16px 32px rgba(0,0,0,.42);
+}
+
+.crossfire-map-seat {
+  border-color: rgba(119,202,242,.42);
+  background: linear-gradient(145deg, rgba(8,30,45,.96), rgba(4,14,22,.96));
+  box-shadow: 0 8px 18px rgba(0,0,0,.35);
+}
+
+.crossfire-map-seat.in-shuffle {
+  border-color: #72d5ff;
+  box-shadow: 0 0 0 3px rgba(95,200,248,.16), 0 0 25px rgba(65,182,238,.22);
+}
+
+.crossfire-identity-panel {
+  border-left-color: #66c9f5;
+  background: linear-gradient(145deg, rgba(11,32,46,.96), rgba(7,17,24,.96));
+}
+
+/* Good Cop Bad Cop: dossier board with evidence cards and a stable action dock. */
+.goodcop-screen {
+  --table-accent: #a6c487;
+  background: radial-gradient(circle at 50% 0, rgba(110,136,75,.2), transparent 38%);
+}
+
+.goodcop-case-board {
+  border-color: rgba(177,156,103,.48);
+  background-color: #9b693c;
+  background-image: linear-gradient(rgba(42,31,20,.24), rgba(25,20,15,.52)), url('/assets/game-surfaces-atlas.jpg');
+  background-size: 300% 200%;
+  background-position: 50% 100%;
+  background-repeat: no-repeat;
+  box-shadow: inset 0 0 52px rgba(0,0,0,.42), 0 22px 42px rgba(0,0,0,.34);
+}
+
+.goodcop-case-status {
+  border-color: rgba(230,205,146,.24);
+  background: rgba(23,25,20,.82);
+  box-shadow: 0 8px 16px rgba(0,0,0,.24);
+}
+
+.goodcop-dossier {
+  border-color: rgba(224,210,170,.23);
+  background: linear-gradient(145deg, rgba(33,34,27,.95), rgba(17,20,17,.96));
+  box-shadow: 0 8px 16px rgba(0,0,0,.28), inset 0 1px rgba(255,255,255,.06);
+}
+
+.goodcop-dossier.current {
+  border-color: #e2be68;
+  background: linear-gradient(145deg, rgba(57,48,28,.96), rgba(22,24,18,.96));
+}
+
+.goodcop-dossier.selected {
+  border-color: #68bff2;
+  box-shadow: 0 0 0 3px rgba(104,191,242,.16), 0 8px 18px rgba(0,0,0,.3);
+}
+
+.goodcop-screen .new-game-private {
+  border-left-color: #a2c181;
+}
+
+/* Dice simulator: a small portrait tray with high-contrast readable pips. */
+.liarsdice-screen {
+  --table-accent: #c09ce8;
+  background: radial-gradient(circle at 50% 0, rgba(119,82,165,.23), transparent 42%);
+}
+
+.dice-tray {
+  border-color: rgba(211,173,244,.48);
+  background-color: #4a1744;
+  background-image: linear-gradient(rgba(31,12,33,.18), rgba(24,7,27,.46)), url('/assets/game-surfaces-atlas.jpg');
+  background-size: 300% 200%;
+  background-position: 100% 100%;
+  background-repeat: no-repeat;
+  box-shadow: inset 0 0 55px rgba(0,0,0,.55), 0 20px 40px rgba(0,0,0,.38);
+}
+
+.dice-tray-grid .die {
+  border-color: #faf2ff;
+  background: linear-gradient(145deg, #fffdfc, #d6c6dd);
+  box-shadow: inset 0 1px white, 0 9px 15px rgba(0,0,0,.35);
+}
+
+.dice-status-roster > div {
+  border-color: rgba(209,173,240,.25);
+  background: linear-gradient(145deg, rgba(35,23,44,.94), rgba(17,12,23,.95));
+  box-shadow: inset 0 1px rgba(255,255,255,.05);
+}
+
+.liardice-point-stats,
+.liardice-results {
+  border-color: rgba(210,170,240,.4);
+  background: linear-gradient(145deg, rgba(49,28,58,.94), rgba(22,15,31,.96));
+  box-shadow: 0 12px 26px rgba(0,0,0,.24);
+}
+
+/* Poker: keep the oval table and make seats, cards, pot, and actions read as one board. */
+.poker-screen {
+  background: radial-gradient(circle at 50% 0, rgba(55,99,71,.2), transparent 37%), #071116;
+}
+
+.poker-table {
+  border-width: 8px;
+  border-color: #5f482c;
+  background-color: #184c34;
+  background-image: linear-gradient(rgba(4,20,13,.2), rgba(4,20,13,.32)), url('/assets/game-surfaces-atlas.jpg');
+  background-size: 300% 200%;
+  background-position: 50% 0%;
+  background-repeat: no-repeat;
+  box-shadow: inset 0 0 72px rgba(0,0,0,.58), 0 22px 50px rgba(0,0,0,.44);
+}
+
+.poker-table::after {
+  border-color: rgba(238,205,130,.22);
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,.35);
+}
+
+.seat-bubble {
+  border-color: rgba(238,226,193,.2);
+  background: linear-gradient(145deg, rgba(20,28,27,.97), rgba(6,12,13,.97));
+  box-shadow: 0 8px 18px rgba(0,0,0,.42), inset 0 1px rgba(255,255,255,.06);
+}
+
+.poker-seat.acting .seat-bubble {
+  border-color: #e6bf6b;
+  background: linear-gradient(145deg, #4a3a1e, #1d2118);
+  box-shadow: 0 0 0 3px rgba(230,191,107,.16), 0 10px 22px rgba(0,0,0,.42);
+}
+
+.poker-seat-index {
+  display: block;
+  margin-bottom: 1px;
+  color: #ddb967;
+  font-size: 8px;
+  letter-spacing: .08em;
+}
+
+.poker-action-grid button {
+  box-shadow: inset 0 1px rgba(255,255,255,.1), 0 7px 14px rgba(0,0,0,.2);
+}
+
+.playing-card {
+  box-shadow: 0 7px 13px rgba(0,0,0,.4), inset 0 1px white;
+}
+
+/* Responsive rules: compact nameplates below 430px, two-column boards in landscape. */
+@media (max-width: 699px) {
+  .screen-pad { padding-inline: max(12px, env(safe-area-inset-left)) max(12px, env(safe-area-inset-right)); }
+  .avalon-screen,
+  .guandan-screen,
+  .new-game-screen { padding-top: max(12px, env(safe-area-inset-top)); }
+  .game-header { min-height: 52px; }
+  .game-header-actions .phase-copy { display: none; }
+  .avalon-board-layout { gap: 10px; }
+  .avalon-command-panel { gap: 8px; }
+  .new-game-action-card { margin-block: 9px; padding: 13px; }
+  .poker-stage { padding-inline: 8px; }
+}
+
+@media (max-width: 430px) {
+  .player-nameplate { min-height: 44px; padding: 5px 6px; grid-template-columns: 20px minmax(0,1fr) auto; gap: 1px 5px; }
+  .player-nameplate-seat { font-size: 8px; }
+  .player-nameplate-copy strong { font-size: 9px; }
+  .player-nameplate-copy small,
+  .player-nameplate-copy em,
+  .player-nameplate-badge { font-size: 7px; }
+  .avalon-council-table { height: clamp(398px, 122vw, 510px); min-height: 398px; }
+  .avalon-council-seat { --council-radius: clamp(120px, 34vw, 158px); width: min(88px, 24vw); }
+  .avalon-table-center { width: min(180px, 48%); padding: 11px 8px; }
+  .avalon-table-center > strong { font-size: 14px; }
+  .guandan-seat-table { min-height: 350px; }
+  .guandan-seat { width: min(112px, 29vw); }
+  .timebomb-wire-grid { gap: 5px; }
+  .timebomb-wire-box { min-height: 59px; padding-inline: 5px; }
+  .crossfire-intel-map { height: 360px; }
+  .crossfire-map-seat { --crossfire-radius: 128px; width: 84px; min-height: 47px; padding: 5px; }
+  .crossfire-map-center { width: 44%; padding: 8px; }
+  .goodcop-dossier-grid { gap: 5px; }
+  .goodcop-dossier { min-height: 94px; padding: 7px; }
+  .dice-tray { padding: 12px; }
+  .dice-tray-grid { gap: 8px; }
+  .poker-table { min-height: 318px; }
+  .poker-seat { width: min(96px, 26vw); }
+  .seat-bubble { min-width: 62px; padding: 4px 5px; }
+  .seat-bubble strong { font-size: 9px; }
+  .seat-bubble span { font-size: 10px; }
+}
+
+@media (max-width: 360px) {
+  .avalon-council-seat { --council-radius: 112px; width: 76px; }
+  .avalon-table-center { width: 162px; }
+  .guandan-seat { width: 94px; }
+  .crossfire-intel-map { height: 336px; }
+  .crossfire-map-seat { --crossfire-radius: 116px; width: 76px; }
+  .timebomb-wire-box { min-height: 54px; }
+  .poker-seat { width: 82px; }
+}
+
+@media (orientation: portrait) and (max-width: 699px) {
+  .guandan-screen .landscape-hint,
+  .timebomb-screen .landscape-hint,
+  .crossfire-screen .landscape-hint,
+  .goodcop-screen .landscape-hint,
+  .poker-screen .landscape-hint { display: flex; }
+}
+
+@media (min-width: 700px) and (orientation: landscape) {
+  .game-header,
+  .poker-header { padding-inline: 2px; }
+  .avalon-board-layout { grid-template-columns: minmax(0, 1.45fr) minmax(270px, .55fr); }
+  .avalon-council-table { height: min(67dvh, 610px); }
+  .avalon-council-seat { --council-radius: min(30dvh, 255px); width: min(144px, 14vw); }
+  .guandan-screen { grid-template-columns: minmax(0, 1.45fr) minmax(270px, .55fr); }
+  .guandan-screen > .guandan-seat-table { min-height: min(69dvh, 610px); }
+  .guandan-seat { width: 148px; }
+  .timebomb-screen,
+  .crossfire-screen,
+  .goodcop-screen { grid-template-columns: minmax(0, 1.42fr) minmax(270px, .58fr); }
+  .timebomb-screen > .timebomb-workbench,
+  .crossfire-screen > .crossfire-intel-map,
+  .goodcop-screen > .goodcop-case-board { min-height: min(74dvh, 650px); }
+  .crossfire-map-seat { --crossfire-radius: min(32dvh, 270px); width: 145px; }
+  .goodcop-dossier-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .poker-screen { grid-template-columns: minmax(0, 1.48fr) minmax(260px, .52fr); }
+  .poker-table { height: min(76dvh, 660px); }
+}
+
+/* Final cascade for phone landscape. Keep this block last so the compact
+   layout wins over the older portrait compatibility rules above. */
+@media (orientation: landscape) and (max-width: 699px) {
+  html, body { overflow-x: hidden; }
+  .app-shell { min-height: 100dvh; overflow-x: hidden; }
+  .game-screen, .new-game-screen, .poker-screen {
+    width: 100%; max-width: none; height: 100dvh; min-height: 100dvh; max-height: 100dvh;
+    margin: 0; overflow: hidden;
+    padding: max(4px, env(safe-area-inset-top)) max(8px, env(safe-area-inset-right)) max(4px, env(safe-area-inset-bottom)) max(8px, env(safe-area-inset-left));
+  }
+  .screen-pad { padding-inline: max(8px, env(safe-area-inset-left)) max(8px, env(safe-area-inset-right)); }
+  .game-header, .poker-header { min-height: 38px; height: auto; padding-block: 3px; }
+  .game-header h1, .poker-header h1, .guandan-header h1 { font-size: 15px; }
+  .room-header-leading { gap: 6px; }
+  .room-header-leading > div > span, .poker-header span, .guandan-header span { font-size: 8px; }
+  .room-back-button { height: 30px; padding-inline: 7px; border-radius: 8px; font-size: 9px; }
+  .game-header-actions, .poker-header-actions { gap: 4px; }
+  .game-header-actions > button, .poker-rules-button, .poker-restart-button { min-width: 30px; width: 30px; height: 30px; padding-inline: 4px; border-radius: 8px; }
+  .poker-restart-button { width: auto; padding-inline: 7px; font-size: 9px; }
+  .phase-copy, .new-game-phase, .guandan-turn { padding: 3px 5px; font-size: 8px; }
+  .landscape-hint { display: none !important; }
+  .player-nameplate { min-height: 38px; padding: 4px 5px; grid-template-columns: 18px minmax(0,1fr) auto; gap: 1px 4px; border-radius: 8px; }
+  .player-nameplate-seat { font-size: 7px; }
+  .player-nameplate-copy strong { font-size: 8px; }
+  .player-nameplate-copy small, .player-nameplate-copy em, .player-nameplate-badge { font-size: 6.5px; }
+
+  /* Avalon */
+  .avalon-screen { display: grid; grid-template-rows: auto auto auto minmax(0,1fr); gap: 3px; align-content: start; }
+  .avalon-screen > .mission-rail { width: min(420px,62vw); height: 27px; margin: 0 auto; }
+  .mission-node { width: 26px; height: 26px; font-size: 10px; }
+  .avalon-screen > .proposal-meta { width: 100%; padding-inline: 4px; font-size: 8px; }
+  .mission-counts { gap: 3px; margin: 0; }
+  .mission-counts span { padding: 3px 4px; font-size: 7px; }
+  .mission-counts strong { font-size: 9px; }
+  .avalon-board-layout { grid-template-columns: minmax(0,1fr) minmax(176px,34%); gap: 6px; min-height: 0; margin: 0; }
+  .avalon-council-table { height: calc(100dvh - 101px); min-height: 238px; border-radius: 20px; }
+  .avalon-council-seat { --council-radius: min(27dvh,100px); width: min(86px,15vw); min-height: 38px; padding: 4px 5px; }
+  .avalon-council-seat strong { font-size: 8px; }
+  .avalon-council-seat small { font-size: 6.5px; }
+  .avalon-table-center { width: min(170px,36%); padding: 7px 5px; border-radius: 10px; }
+  .avalon-table-center > span, .avalon-table-center > small, .avalon-table-center > div { font-size: 7px; }
+  .avalon-table-center > strong { font-size: 12px; }
+  .avalon-command-panel { min-width: 0; min-height: 0; gap: 5px; overflow: auto; }
+  .avalon-command-panel .identity-panel { min-height: 56px; margin: 0; padding: 7px; grid-template-columns: 30px minmax(0,1fr); gap: 6px; }
+  .avalon-command-panel .identity-icon { width: 30px; height: 30px; }
+  .avalon-command-panel .identity-panel span { font-size: 7px; }
+  .avalon-command-panel .identity-panel h2 { font-size: 14px; }
+  .avalon-command-panel .identity-panel p { margin-top: 2px; font-size: 7px; }
+  .avalon-action-dock { min-width: 0; margin: 0; padding: 7px; border-radius: 10px; }
+  .avalon-action-dock > header { margin-bottom: 5px; }
+  .avalon-action-dock > header span { font-size: 7px; }
+  .avalon-action-dock > header strong { font-size: 10px; }
+  .avalon-action-dock button, .assassinate-panel button { min-height: 34px; padding-inline: 4px; font-size: 9px; }
+  .split-actions { gap: 4px; }
+
+  /* Guandan */
+  .guandan-screen { display: grid; grid-template-columns: minmax(0,1fr) minmax(176px,34%); grid-template-rows: auto auto minmax(0,1fr) auto; gap: 4px 6px; align-content: start; }
+  .guandan-screen > .game-header, .guandan-screen > .guandan-scorebar { grid-column: 1 / -1; }
+  .guandan-scorebar { gap: 3px; margin: 0; }
+  .guandan-scorebar span { padding: 4px 6px; font-size: 7px; }
+  .guandan-scorebar strong { font-size: 10px; }
+  .guandan-scorebar small { font-size: 7px; }
+  .guandan-screen > .guandan-seat-table { grid-column: 1; grid-row: 3 / span 2; height: calc(100dvh - 94px); min-height: 238px; margin: 0; border-radius: 20px; }
+  .guandan-seat { width: min(92px,15vw); min-height: 38px; padding: 4px 5px; }
+  .guandan-seat-avatar { display: none; }
+  .guandan-seat strong { max-width: 100%; font-size: 8px; }
+  .guandan-seat small, .guandan-seat b { font-size: 6.5px; }
+  .guandan-seat-table .guandan-center { width: 44%; min-width: 108px; padding: 7px 5px; }
+  .guandan-screen > .guandan-hand-panel { grid-column: 2; grid-row: 3; min-width: 0; min-height: 0; margin: 0; padding: 6px; overflow: hidden; border-radius: 10px; }
+  .guandan-hand-heading { margin-bottom: 3px; }
+  .guandan-hand-heading span { font-size: 9px; }
+  .guandan-hand-heading small { max-width: 55%; font-size: 6.5px; }
+  .guandan-hand { display: grid; grid-template-columns: repeat(7,minmax(0,1fr)); grid-auto-flow: row; grid-auto-columns: auto; grid-template-rows: none; gap: 3px 2px; max-height: none; overflow: visible; padding: 4px 0; }
+  .guandan-hand .guandan-card-button { width: 100%; min-width: 0; }
+  .guandan-card { width: min(100%,28px); height: 38px; padding: 3px 2px; justify-self: center; }
+  .guandan-card strong { font-size: 10px; }
+  .guandan-card i { font-size: 12px; }
+  .guandan-screen > .guandan-actions, .guandan-screen > .guandan-result { grid-column: 2; grid-row: 4; min-width: 0; margin: 0; padding: 3px 0 0; border: 0; background: transparent; box-shadow: none; }
+  .guandan-actions { gap: 4px; }
+  .guandan-actions button { min-height: 34px; padding-inline: 4px; font-size: 9px; }
+
+  /* TimeBomb */
+  .timebomb-screen { display: grid; grid-template-columns: minmax(0,1fr) minmax(176px,34%); grid-auto-rows: min-content; gap: 5px 6px; align-content: start; }
+  .timebomb-screen > .game-header { grid-column: 1 / -1; }
+  .timebomb-screen > .timebomb-workbench { grid-column: 1; grid-row: 2 / span 6; height: calc(100dvh - 53px); min-height: 238px; margin: 0; padding: 6px; display: grid; grid-template-rows: minmax(0,1fr) auto; gap: 5px; overflow: hidden; border-radius: 18px; }
+  .timebomb-wire-grid { grid-template-columns: repeat(4,minmax(0,1fr)); gap: 3px; min-height: 0; align-content: start; }
+  .timebomb-wire-box { min-height: 42px; padding: 3px 2px; grid-template-columns: 16px minmax(0,1fr) auto; gap: 2px; border-radius: 7px; }
+  .timebomb-wire-box > span { width: 20px; height: 20px; border-radius: 6px; font-size: 8px; }
+  .timebomb-wire-box strong { font-size: 7px; }
+  .timebomb-wire-box small { font-size: 6px; }
+  .timebomb-console { min-height: 66px; margin: 0; padding: 5px; gap: 2px; }
+  .timebomb-console > span, .timebomb-console > em, .timebomb-console > small { font-size: 7px; }
+  .timebomb-console > strong { font-size: 24px; }
+  .timebomb-screen > .new-game-private, .timebomb-screen > .new-game-action-card, .timebomb-screen > .new-game-result, .timebomb-screen > .game-history-drawer { grid-column: 2; min-width: 0; margin: 0; padding: 6px; border-radius: 9px; }
+  .timebomb-screen > .new-game-private > strong, .timebomb-screen > .new-game-action-card h2 { font-size: 9px; }
+  .timebomb-screen > .new-game-private > small, .timebomb-screen > .new-game-action-card p, .timebomb-screen > .new-game-result span, .timebomb-screen > .game-history-drawer summary { font-size: 7px; }
+  .timebomb-screen .wire-chip, .timebomb-screen .game-history-drawer p { font-size: 7px; }
+  .timebomb-screen .new-game-action-card button { min-height: 34px; padding-inline: 4px; font-size: 9px; }
+  .unknown-wire-row { display: grid; grid-template-columns: repeat(auto-fit,minmax(45px,1fr)); gap: 3px; overflow: visible; padding: 1px 0 3px; }
+  .unknown-wire-row button { min-width: 0; min-height: 40px; padding: 3px 2px; font-size: 7px; }
+  .unknown-wire-row button span { width: 25px; height: 7px; }
+
+  /* Crossfire */
+  .crossfire-screen { display: grid; grid-template-columns: minmax(0,1fr) minmax(176px,34%); grid-auto-rows: min-content; gap: 5px 6px; align-content: start; }
+  .crossfire-screen > .game-header { grid-column: 1 / -1; }
+  .crossfire-screen > .crossfire-intel-map { grid-column: 1; grid-row: 2 / span 6; height: calc(100dvh - 53px); min-height: 238px; margin: 0; border-radius: 20px; }
+  .crossfire-map-seat { --crossfire-radius: min(27dvh,104px); width: min(78px,13vw); min-height: 38px; padding: 4px; grid-template-columns: 18px minmax(0,1fr); gap: 1px 3px; }
+  .crossfire-map-seat > span { width: 18px; height: 18px; font-size: 7px; }
+  .crossfire-map-seat strong { font-size: 7px; }
+  .crossfire-map-seat small { font-size: 6px; }
+  .crossfire-map-center { width: 38%; padding: 7px 4px; border-radius: 10px; }
+  .crossfire-map-center strong { font-size: 11px; }
+  .crossfire-map-center small, .crossfire-map-center span { font-size: 7px; }
+  .crossfire-screen > .crossfire-identity-panel, .crossfire-screen > .new-game-action-card, .crossfire-screen > .new-game-result { grid-column: 2; min-width: 0; margin: 0; padding: 7px; border-radius: 9px; }
+  .crossfire-identity-panel { gap: 7px; max-height: calc(100dvh - 83px); overflow: auto; }
+  .identity-info-section { gap: 3px; }
+  .identity-info-section > span, .shuffle-history-list > span { font-size: 7px; }
+  .identity-info-section > strong, .shuffle-history-list small, .intel-list span { font-size: 8px; }
+  .shuffle-group-line { padding: 4px 5px; }
+  .crossfire-screen > .new-game-action-card h2 { font-size: 9px; }
+  .crossfire-screen > .new-game-action-card p, .crossfire-screen > .new-game-result p, .crossfire-screen > .new-game-result span { font-size: 7px; }
+  .crossfire-screen > .new-game-action-card button { min-height: 34px; padding-inline: 4px; font-size: 9px; }
+
+  /* Good Cop Bad Cop */
+  .goodcop-screen { display: grid; grid-template-columns: minmax(0,1fr) minmax(176px,34%); grid-auto-rows: min-content; gap: 5px 6px; align-content: start; }
+  .goodcop-screen > .game-header { grid-column: 1 / -1; }
+  .goodcop-screen > .goodcop-case-board { grid-column: 1; grid-row: 2 / span 6; height: calc(100dvh - 53px); min-height: 238px; margin: 0; padding: 6px; display: grid; grid-template-columns: 1fr; grid-template-rows: auto minmax(0,1fr); gap: 5px; overflow: hidden; border-radius: 18px; }
+  .goodcop-case-status { min-height: 42px; padding: 5px 6px; gap: 2px 5px; }
+  .goodcop-case-status > span, .goodcop-case-status > small { font-size: 6.5px; }
+  .goodcop-case-status > strong { font-size: 9px; }
+  .goodcop-dossier-grid { grid-template-columns: repeat(4,minmax(0,1fr)); gap: 3px; min-height: 0; margin-top: 0; align-content: start; }
+  .goodcop-dossier { min-height: 58px; padding: 4px; border-radius: 7px; }
+  .goodcop-dossier > header { gap: 3px; }
+  .goodcop-dossier > header > span { width: 18px; height: 18px; font-size: 7px; }
+  .goodcop-dossier header strong { font-size: 7px; }
+  .goodcop-dossier header small, .goodcop-dossier header b { font-size: 6px; }
+  .public-integrity-row { gap: 2px; margin-top: 4px; }
+  .public-integrity-row i { min-height: 18px; padding: 2px; font-size: 5.5px; }
+  .goodcop-screen > .new-game-private, .goodcop-screen > .new-game-action-card, .goodcop-screen > .waiting-action, .goodcop-screen > .new-game-history, .goodcop-screen > .new-game-result { grid-column: 2; min-width: 0; margin: 0; padding: 6px; border-radius: 9px; }
+  .goodcop-screen > .new-game-private > strong, .goodcop-screen > .new-game-action-card h2, .goodcop-screen > .new-game-history h3 { font-size: 9px; }
+  .goodcop-screen > .new-game-private > small, .goodcop-screen > .new-game-private p, .goodcop-screen > .new-game-action-card p, .goodcop-screen > .new-game-history p, .goodcop-screen > .new-game-result p { font-size: 7px; }
+  .goodcop-screen .integrity-cards, .goodcop-screen .new-game-button-grid { gap: 3px; }
+  .goodcop-screen .new-game-action-card button, .goodcop-screen .integrity-index-picker button { min-height: 32px; padding-inline: 3px; font-size: 8px; }
+
+  /* Dice simulator */
+  .liarsdice-screen { display: grid; grid-template-columns: minmax(0,1.12fr) minmax(176px,.88fr); grid-template-rows: auto auto auto minmax(0,1fr) auto; grid-auto-rows: min-content; gap: 4px 6px; align-content: start; width: 100%; max-width: none; }
+  .liarsdice-screen > .game-header, .liarsdice-screen > .new-game-summary, .liarsdice-screen > .dice-status-roster { grid-column: 1 / -1; }
+  .new-game-summary { gap: 4px; margin: 0; padding: 5px 6px; font-size: 7px; }
+  .dice-status-roster { grid-template-columns: repeat(5,minmax(0,1fr)); gap: 3px; margin: 0; padding: 0; overflow: visible; }
+  .dice-status-roster > div { min-height: 29px; padding: 4px; grid-template-columns: 15px minmax(0,1fr); gap: 1px 3px; border-radius: 7px; }
+  .dice-status-roster span { width: auto; height: auto; font-size: 6.5px; }
+  .dice-status-roster strong { font-size: 6.5px; }
+  .dice-status-roster small { font-size: 5.5px; }
+  .liarsdice-screen > .dice-tray { grid-column: 1; grid-row: 4 / span 3; height: calc(100dvh - 104px); min-height: 178px; margin: 0; padding: 8px; border-radius: 18px; }
+  .dice-tray > header { font-size: 9px; }
+  .dice-tray > header span, .dice-tray > small { font-size: 6.5px; }
+  .dice-tray-grid { grid-template-columns: repeat(5,minmax(24px,1fr)); gap: 4px; margin: 10px 0; }
+  .dice-tray-grid .die { max-width: 40px; justify-self: center; border-radius: 8px; font-size: 14px; }
+  .liarsdice-screen > .new-game-action-card, .liarsdice-screen > .new-game-note, .liarsdice-screen > .liardice-point-stats, .liarsdice-screen > .liardice-results { grid-column: 2; min-width: 0; margin: 0; padding: 6px; border-radius: 9px; }
+  .liarsdice-screen > .new-game-action-card { grid-row: 4; position: static; }
+  .liarsdice-screen > .new-game-note { grid-row: 5; font-size: 6.5px; }
+  .liarsdice-screen > .new-game-action-card h2, .liarsdice-screen > .liardice-point-stats > strong, .liarsdice-screen > .liardice-results > strong { font-size: 9px; }
+  .liarsdice-screen > .new-game-action-card p, .liarsdice-screen > .liardice-point-stats b, .liarsdice-screen > .liardice-point-stats em, .liarsdice-screen > .liardice-results b, .liarsdice-screen > .liardice-results em { font-size: 7px; }
+  .liarsdice-screen > .new-game-action-card button { min-height: 34px; padding-inline: 4px; font-size: 9px; }
+  .liardice-point-stats { gap: 4px; }
+  .liardice-point-stats > div { gap: 2px; }
+  .liardice-point-stats span { padding: 3px 1px; }
+  .liardice-results > div { grid-template-columns: 1fr; gap: 3px; }
+  .liardice-results span { padding: 4px; }
+
+  /* Poker */
+  .poker-screen { display: grid; grid-template-columns: minmax(0,1fr) minmax(176px,.42fr); grid-template-rows: auto auto minmax(0,1fr); gap: 3px 6px; }
+  .poker-screen > .poker-header, .poker-screen > .poker-hand-meta { grid-column: 1 / -1; width: 100%; max-width: none; }
+  .poker-screen > .poker-hand-meta { margin: 0; padding-block: 1px; font-size: 7px; }
+  .poker-screen > .poker-stage { grid-column: 1; grid-row: 3; width: 100%; height: 100%; min-height: 0; padding: 0; }
+  .poker-table { height: calc(100dvh - 82px); min-height: 232px; border-width: 5px; }
+  .poker-table .playing-card { width: 39px; height: 55px; padding: 3px; }
+  .poker-table .playing-card strong { font-size: 12px; }
+  .poker-table .playing-card span { font-size: 13px; }
+  .poker-seat { width: 74px; }
+  .seat-bubble { min-width: 62px; padding: 4px 5px; border-radius: 7px; }
+  .seat-bubble strong { font-size: 8px; }
+  .seat-bubble span { font-size: 9px; }
+  .seat-bubble small { font-size: 6.5px; }
+  .seat-marks { top: -12px; right: -5px; }
+  .seat-marks i, .seat-marks b { min-width: 14px; height: 14px; font-size: 6px; }
+  .poker-screen > .poker-actions { grid-column: 2; grid-row: 3; width: 100%; min-width: 0; margin: 0; padding: 5px 0; border-top: 0; border-left: 1px solid var(--line); background: transparent; align-self: stretch; overflow: auto; }
+  .turn-line { display: grid; gap: 3px; margin-bottom: 5px; font-size: 7px; }
+  .poker-action-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 4px; }
+  .poker-action-grid button { min-height: 36px; padding-inline: 3px; border-radius: 7px; font-size: 9px; }
+  .raise-control { grid-template-columns: auto minmax(0,1fr) 36px; gap: 4px; margin-top: 5px; padding: 5px; font-size: 7px; }
+  .hand-result { font-size: 8px; }
+}
+
+@media (orientation: landscape) and (max-width: 699px) and (max-height: 420px) {
+  .game-header, .poker-header { min-height: 34px; padding-block: 2px; }
+  .game-header h1, .poker-header h1, .guandan-header h1 { font-size: 13px; }
+  .room-back-button, .game-header-actions > button, .poker-rules-button, .poker-restart-button { height: 27px; min-height: 27px; }
+  .avalon-screen > .mission-rail { height: 23px; }
+  .mission-node { width: 22px; height: 22px; font-size: 8px; }
+  .avalon-council-table, .guandan-screen > .guandan-seat-table, .timebomb-screen > .timebomb-workbench, .crossfire-screen > .crossfire-intel-map, .goodcop-screen > .goodcop-case-board { min-height: 210px; }
+  .avalon-council-table { height: calc(100dvh - 86px); }
+  .avalon-council-seat { --council-radius: min(22dvh,78px); width: min(78px,15vw); min-height: 32px; }
+  .avalon-table-center { width: min(145px,36%); padding: 5px 4px; }
+  .guandan-screen > .guandan-seat-table { height: calc(100dvh - 80px); }
+  .guandan-seat { width: min(78px,15vw); min-height: 32px; }
+  .guandan-hand { gap: 2px 1px; padding-block: 2px; }
+  .guandan-card { height: 32px; max-width: 24px; }
+  .guandan-card strong { font-size: 8px; }
+  .guandan-card i { font-size: 10px; }
+  .timebomb-screen > .timebomb-workbench { height: calc(100dvh - 46px); }
+  .timebomb-wire-box { min-height: 36px; }
+  .timebomb-console { min-height: 54px; }
+  .timebomb-console > strong { font-size: 20px; }
+  .crossfire-screen > .crossfire-intel-map, .goodcop-screen > .goodcop-case-board { height: calc(100dvh - 46px); }
+  .crossfire-map-seat { --crossfire-radius: min(22dvh,82px); min-height: 32px; }
+  .goodcop-dossier { min-height: 48px; }
+  .public-integrity-row i { min-height: 14px; }
+  .liarsdice-screen > .dice-tray { height: calc(100dvh - 89px); min-height: 160px; }
+  .dice-tray-grid { margin-block: 6px; }
+  .poker-table { height: calc(100dvh - 70px); min-height: 205px; }
+  .poker-table .playing-card { width: 34px; height: 48px; }
+}
+
+/* v0.8 render-faithful tabletop pass.
+   The approved render is the visual source of truth: each game gets a
+   distinct material, a readable public zone, and a compact command rail.
+   These rules intentionally target the real game surfaces above instead of
+   adding a decorative shell around the old screens. */
+:root {
+  --render-ink: #071015;
+  --render-panel: rgba(8, 16, 21, .94);
+  --render-line: rgba(228, 198, 126, .34);
+  --render-muted: #8f9a9a;
+}
+
+.app-shell {
+  background:
+    radial-gradient(circle at 50% -12%, rgba(95, 111, 128, .16), transparent 33%),
+    radial-gradient(circle at 8% 90%, rgba(28, 77, 92, .12), transparent 28%),
+    #071015;
+}
+
+.game-screen,
+.new-game-screen,
+.poker-screen {
+  position: relative;
+  isolation: isolate;
+}
+
+.game-header,
+.poker-header {
+  position: relative;
+  z-index: 20;
+  min-height: 48px;
+  padding: 6px 9px;
+  border: 1px solid rgba(231, 208, 155, .24);
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(24, 31, 34, .96), rgba(8, 15, 19, .96));
+  box-shadow: 0 9px 25px rgba(0, 0, 0, .24), inset 0 1px rgba(255,255,255,.08);
+}
+
+.game-header h1,
+.poker-header h1 {
+  color: #f2d590;
+  letter-spacing: .025em;
+  text-shadow: 0 1px 12px rgba(227, 180, 86, .16);
+}
+
+.room-header-leading { min-width: 0; }
+.room-header-leading > div { min-width: 0; }
+.room-header-leading > div > span,
+.poker-header span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #9aa5a5;
+  letter-spacing: .04em;
+}
+
+.room-back-button,
+.game-header-actions > button,
+.poker-rules-button,
+.poker-restart-button {
+  border-color: rgba(239, 208, 132, .28);
+  border-radius: 9px;
+  background: linear-gradient(180deg, #1b2a2e, #0d181d);
+  box-shadow: inset 0 1px rgba(255,255,255,.08), 0 5px 12px rgba(0,0,0,.24);
+}
+
+.room-back-button:hover:not(:disabled),
+.game-header-actions > button:hover:not(:disabled),
+.poker-rules-button:hover:not(:disabled),
+.poker-restart-button:hover:not(:disabled) {
+  border-color: #e2bc6a;
+  background: linear-gradient(180deg, #29383b, #111e23);
+}
+
+.player-nameplate {
+  min-height: 48px;
+  padding: 6px 8px;
+  border-color: color-mix(in srgb, var(--table-accent, #d7b56d) 34%, rgba(255,255,255,.08));
+  border-left-width: 3px;
+  border-radius: 10px;
+  background: linear-gradient(145deg, rgba(22, 30, 32, .98), rgba(6, 13, 17, .98));
+  box-shadow: 0 9px 18px rgba(0,0,0,.34), inset 0 1px rgba(255,255,255,.07);
+}
+
+.player-nameplate-seat {
+  min-width: 22px;
+  color: #f0ce80;
+  font-size: 9px;
+  letter-spacing: .06em;
+}
+
+.player-nameplate-copy { gap: 1px; }
+.player-nameplate-copy strong { color: #f4efe5; font-size: 10px; letter-spacing: .01em; }
+.player-nameplate-copy small { color: #a0acab; font-size: 7px; }
+.player-nameplate-copy em { color: color-mix(in srgb, var(--table-accent, #d7b56d) 84%, white); font-size: 7px; }
+.player-nameplate-badge { color: #f2d58f; font-size: 7px; }
+.player-nameplate.is-current { border-left-color: #f4c45b; background: linear-gradient(145deg, rgba(69, 49, 21, .98), rgba(22, 22, 17, .98)); box-shadow: 0 0 0 2px rgba(241, 193, 79, .15), 0 10px 20px rgba(0,0,0,.4); }
+.player-nameplate.is-selected { border-left-color: #65d38d; background: linear-gradient(145deg, rgba(20, 70, 47, .98), rgba(8, 29, 22, .98)); }
+
+.new-game-summary,
+.mission-counts,
+.guandan-scorebar,
+.poker-hand-meta {
+  border-color: rgba(225, 199, 132, .18);
+  background: rgba(9, 18, 22, .72);
+  box-shadow: inset 0 1px rgba(255,255,255,.04);
+}
+
+.new-game-action-card,
+.new-game-private,
+.guandan-hand-panel,
+.poker-actions,
+.new-game-history,
+.game-history-drawer {
+  border-color: rgba(225, 199, 132, .2);
+  background: linear-gradient(145deg, rgba(19, 28, 31, .96), rgba(7, 14, 18, .97));
+  box-shadow: 0 12px 24px rgba(0,0,0,.25), inset 0 1px rgba(255,255,255,.05);
+}
+
+.primary-button,
+.success-button,
+.danger-button,
+.secondary-button {
+  min-height: 43px;
+  border-radius: 10px;
+  box-shadow: inset 0 1px rgba(255,255,255,.09), 0 7px 14px rgba(0,0,0,.24);
+}
+
+.primary-button { border-color: #dbb866; background: linear-gradient(180deg, #dcb766, #9e722d); color: #17140f; text-shadow: 0 1px rgba(255,255,255,.2); }
+.primary-button:hover:not(:disabled) { background: linear-gradient(180deg, #f1cf7b, #b58335); }
+.secondary-button { border-color: rgba(194, 213, 211, .28); background: linear-gradient(180deg, #1d3036, #0b171d); }
+.danger-button { border-color: #bd5d54; background: linear-gradient(180deg, #803c36, #4d2020); }
+.success-button { border-color: #65bd84; background: linear-gradient(180deg, #2a774b, #17452d); }
+
+/* Avalon: the mission track sits above a literal council table; the command
+   rail is visually separated so private role data never looks public. */
+.avalon-screen { --table-accent: #e0b866; }
+.avalon-council-table {
+  border: 2px solid #614c32;
+  border-radius: 30px;
+  background-color: #2c1a12;
+  background-image: linear-gradient(rgba(20, 11, 8, .18), rgba(10, 8, 7, .62)), url('/assets/game-surfaces-atlas.jpg');
+  background-size: 300% 200%;
+  background-position: 0% 0%;
+  box-shadow: inset 0 0 0 2px rgba(245, 203, 119, .12), inset 0 0 66px rgba(0,0,0,.68), 0 22px 44px rgba(0,0,0,.42);
+}
+.avalon-council-table::before { inset: 8%; border: 1px solid rgba(245, 208, 133, .4); box-shadow: inset 0 0 0 8px rgba(20, 12, 8, .25), 0 0 0 1px rgba(0,0,0,.5); }
+.avalon-council-table::after { content: ''; position: absolute; inset: 18%; border: 1px solid rgba(239, 205, 137, .16); border-radius: 50%; pointer-events: none; }
+.avalon-table-rings i { border-color: rgba(240, 209, 147, .2); }
+.avalon-table-center { width: min(230px, 43%); padding: 14px 12px; border: 1px solid rgba(242, 207, 135, .5); border-radius: 13px; background: linear-gradient(145deg, rgba(53, 33, 20, .96), rgba(18, 15, 13, .97)); box-shadow: inset 0 1px rgba(255,255,255,.1), 0 16px 28px rgba(0,0,0,.48); }
+.avalon-table-center > strong { color: #f8d890; font-size: 17px; }
+.avalon-command-panel .identity-panel { border-left: 3px solid #6ba6d1; background: linear-gradient(145deg, #152b34, #091419); }
+.avalon-action-dock { border-top: 2px solid #d3aa5b; background: linear-gradient(145deg, #262318, #0b1517); }
+
+/* Guandan: green felt, a gold table rail, partner axis and a separate hand
+   rail mirror the render's four-seat card table. */
+.guandan-screen { --table-accent: #e5c46d; }
+.guandan-seat-table {
+  border: 2px solid #80622e;
+  border-radius: 30px;
+  background-color: #123724;
+  background-image: linear-gradient(rgba(4, 24, 14, .15), rgba(2, 12, 8, .42)), url('/assets/game-surfaces-atlas.jpg');
+  background-size: 300% 200%;
+  background-position: 50% 0%;
+  box-shadow: inset 0 0 0 2px rgba(233, 193, 92, .15), inset 0 0 74px rgba(0,0,0,.58), 0 24px 46px rgba(0,0,0,.42);
+}
+.guandan-seat-table::before { content: ''; position: absolute; inset: 6%; border: 1px solid rgba(238, 203, 117, .28); border-radius: 48%; pointer-events: none; }
+.guandan-seat-table::after { inset: 13%; border: 1px solid rgba(221, 194, 112, .24); box-shadow: inset 0 0 0 1px rgba(0,0,0,.28); }
+.guandan-partner-line { background: linear-gradient(transparent, rgba(226, 190, 98, .5), transparent); box-shadow: 0 0 12px rgba(208,166,80,.16); }
+.guandan-seat { width: min(146px, 31vw); }
+.guandan-seat.is-current { border-left-color: #f5cf6a; }
+.guandan-seat-table .guandan-center { border-color: rgba(235, 194, 96, .54); background: linear-gradient(145deg, rgba(14, 57, 34, .96), rgba(7, 25, 17, .97)); box-shadow: inset 0 1px rgba(255,255,255,.08), 0 17px 34px rgba(0,0,0,.46); }
+.guandan-card { border-color: #bba780; border-radius: 6px; background: linear-gradient(155deg, #fffdf4, #d5cbb6); box-shadow: 0 8px 15px rgba(0,0,0,.44), inset 0 1px white; }
+.guandan-card-button.selected .guandan-card { transform: translateY(-9px); box-shadow: 0 0 0 2px #f2c960, 0 12px 18px rgba(0,0,0,.5); }
+
+/* TimeBomb: a metal workbench with a bright console, hazard accents and
+   wire slots that remain readable at 5–10 players. */
+.timebomb-screen { --table-accent: #ef9760; }
+.timebomb-workbench {
+  border: 2px solid #6e4a3d;
+  border-radius: 22px;
+  background-color: #292727;
+  background-image: linear-gradient(rgba(16, 17, 18, .28), rgba(9, 11, 12, .72)), url('/assets/game-surfaces-atlas.jpg');
+  background-size: 300% 200%;
+  background-position: 100% 0%;
+  box-shadow: inset 0 0 0 2px rgba(235, 135, 84, .1), inset 0 0 64px rgba(0,0,0,.68), 0 24px 48px rgba(0,0,0,.45);
+}
+.timebomb-workbench::before { content: ''; position: absolute; inset: 8px; border: 1px solid rgba(226, 144, 87, .22); border-radius: 15px; pointer-events: none; }
+.timebomb-wire-box { border-color: rgba(219, 193, 159, .26); border-radius: 9px; background: linear-gradient(145deg, rgba(38, 39, 37, .98), rgba(10, 13, 14, .98)); box-shadow: inset 0 1px rgba(255,255,255,.08), 0 8px 15px rgba(0,0,0,.36); }
+.timebomb-wire-box.is-current { border-color: #f2bc63; box-shadow: 0 0 0 2px rgba(241, 179, 89, .2), 0 10px 20px rgba(0,0,0,.45); }
+.timebomb-console { border: 2px solid #ad583f; border-radius: 12px; background: linear-gradient(145deg, rgba(54, 27, 22, .9), rgba(16, 18, 19, .98)); box-shadow: inset 0 0 0 2px rgba(232, 135, 82, .1), inset 0 0 38px rgba(0,0,0,.72), 0 14px 28px rgba(0,0,0,.45); }
+.timebomb-console > strong { color: #ff7d65; text-shadow: 0 0 18px rgba(255,76,46,.55); }
+.unknown-wire-row button { border-color: rgba(221, 157, 90, .24); background: linear-gradient(180deg, #1f2729, #0c1316); }
+
+/* Crossfire: a tactical map with a real seat orbit and a cyan-red action
+   language. Private identity information stays in the right rail. */
+.crossfire-screen { --table-accent: #66c8f4; }
+.crossfire-intel-map {
+  border: 2px solid #2d6c8e;
+  border-radius: 28px;
+  background-color: #102f4a;
+  background-image: linear-gradient(rgba(4, 21, 35, .2), rgba(3, 12, 22, .76)), url('/assets/game-surfaces-atlas.jpg');
+  background-size: 300% 200%;
+  background-position: 0% 100%;
+  box-shadow: inset 0 0 0 2px rgba(92, 197, 245, .12), inset 0 0 84px rgba(0,0,0,.7), 0 24px 48px rgba(0,0,0,.44);
+}
+.crossfire-intel-map::before { inset: 8%; border-color: rgba(96, 205, 255, .52); box-shadow: 0 0 30px rgba(42, 168, 237, .25); }
+.crossfire-intel-map::after { content: ''; position: absolute; left: 50%; top: 50%; width: 18px; height: 18px; border: 2px solid rgba(244, 102, 87, .82); border-radius: 50%; transform: translate(-50%, -50%); box-shadow: 0 0 0 8px rgba(244, 102, 87, .08), 0 0 22px rgba(244, 102, 87, .28); pointer-events: none; }
+.crossfire-orbit i { border-color: rgba(101, 200, 246, .3); }
+.crossfire-map-center { border: 1px solid rgba(108, 207, 251, .5); border-radius: 12px; background: linear-gradient(145deg, rgba(7, 42, 68, .96), rgba(4, 18, 30, .98)); box-shadow: inset 0 1px rgba(255,255,255,.08), 0 17px 34px rgba(0,0,0,.48); }
+.crossfire-map-seat { border-color: rgba(109, 201, 243, .5); background: linear-gradient(145deg, rgba(9, 37, 56, .98), rgba(4, 15, 24, .98)); }
+.crossfire-map-seat.in-shuffle { border-color: #71dcff; box-shadow: 0 0 0 3px rgba(83, 197, 249, .18), 0 0 26px rgba(50, 181, 238, .28); }
+.crossfire-map-seat.selected { border-color: #f06a5f; background: linear-gradient(145deg, #4a2125, #1d1116); }
+
+/* Good Cop Bad Cop: cork + dossier cards. The board itself is the public
+   table; only the private rail contains hidden integrity cards. */
+.goodcop-screen { --table-accent: #a8cb88; }
+.goodcop-case-board {
+  border: 2px solid #705638;
+  border-radius: 21px;
+  background-color: #9b693c;
+  background-image: linear-gradient(rgba(42, 29, 17, .14), rgba(25, 17, 12, .56)), url('/assets/game-surfaces-atlas.jpg');
+  background-size: 300% 200%;
+  background-position: 50% 100%;
+  box-shadow: inset 0 0 0 2px rgba(239, 198, 124, .1), inset 0 0 60px rgba(0,0,0,.46), 0 24px 46px rgba(0,0,0,.44);
+}
+.goodcop-case-board::before { content: ''; position: absolute; inset: 8px; border: 1px dashed rgba(240, 205, 151, .26); border-radius: 14px; pointer-events: none; }
+.goodcop-case-status { border-left: 3px solid #dbb85f; border-color: rgba(228, 202, 151, .32); background: rgba(24, 22, 16, .82); box-shadow: 0 8px 17px rgba(0,0,0,.28); }
+.goodcop-dossier { border-color: rgba(231, 218, 183, .38); border-radius: 8px; background: linear-gradient(145deg, rgba(42, 38, 27, .98), rgba(19, 21, 17, .98)); box-shadow: 0 9px 16px rgba(0,0,0,.34), inset 0 1px rgba(255,255,255,.07); }
+.goodcop-dossier.current { border-color: #f0c86b; background: linear-gradient(145deg, rgba(68, 53, 26, .98), rgba(26, 26, 18, .98)); }
+.goodcop-dossier.selected { border-color: #71c5f1; box-shadow: 0 0 0 3px rgba(90, 185, 234, .2), 0 9px 18px rgba(0,0,0,.35); }
+.public-integrity-row i.revealed { border-color: #b58c4f; color: #f5d595; background: #49351d; }
+
+/* Dice simulator: a compact purple tray with tangible rim and dice well. */
+.liarsdice-screen { --table-accent: #d4adf1; }
+.dice-tray {
+  position: relative;
+  border: 2px solid #8e5e9a;
+  border-radius: 24px;
+  background-color: #4a1744;
+  background-image: linear-gradient(rgba(34, 11, 37, .08), rgba(18, 6, 22, .5)), url('/assets/game-surfaces-atlas.jpg');
+  background-size: 300% 200%;
+  background-position: 100% 100%;
+  box-shadow: inset 0 0 0 2px rgba(243, 180, 241, .1), inset 0 0 58px rgba(0,0,0,.62), 0 22px 42px rgba(0,0,0,.44);
+}
+.dice-tray::before { content: ''; position: absolute; inset: 8px; border: 1px solid rgba(247, 190, 244, .28); border-radius: 17px; pointer-events: none; }
+.dice-tray > * { position: relative; z-index: 1; }
+.dice-tray-grid .die { border-color: #fbf5ff; border-radius: 10px; background: linear-gradient(145deg, #fffefa, #d9c4df); box-shadow: inset 0 1px white, 0 10px 17px rgba(0,0,0,.42); }
+.dice-tray-grid .die b { color: #2a1732; }
+.dice-status-roster > div { border-color: rgba(224, 187, 243, .3); background: linear-gradient(145deg, rgba(44, 25, 53, .97), rgba(19, 12, 25, .98)); }
+.liardice-point-stats, .liardice-results { border-color: rgba(224, 184, 243, .46); background: linear-gradient(145deg, rgba(57, 30, 67, .97), rgba(22, 13, 30, .98)); box-shadow: 0 13px 27px rgba(0,0,0,.3), inset 0 1px rgba(255,255,255,.06); }
+
+/* Poker: the oval felt is a separate stage. Community cards, pot, chips and
+   the player's command strip stay on the same visual plane. */
+.poker-screen { --table-accent: #e4bd66; }
+.poker-table {
+  border: 9px solid #3b2b1c;
+  background-color: #184c34;
+  background-image: linear-gradient(rgba(4, 23, 14, .12), rgba(2, 12, 8, .48)), url('/assets/game-surfaces-atlas.jpg');
+  background-size: 300% 200%;
+  background-position: 50% 0%;
+  box-shadow: inset 0 0 0 2px rgba(234, 198, 118, .38), inset 0 0 78px rgba(0,0,0,.66), 0 26px 52px rgba(0,0,0,.48);
+}
+.poker-table::after { inset: 7%; border: 2px solid rgba(235, 201, 125, .22); box-shadow: inset 0 0 0 1px rgba(0,0,0,.4); }
+.pot-label { border: 1px solid rgba(240, 207, 133, .42); border-radius: 10px; background: rgba(10, 26, 18, .86); box-shadow: 0 8px 16px rgba(0,0,0,.28); }
+.community-cards { filter: drop-shadow(0 9px 12px rgba(0,0,0,.3)); }
+.seat-bubble { border-color: rgba(228, 200, 137, .32); background: linear-gradient(145deg, rgba(22, 32, 28, .98), rgba(5, 12, 12, .98)); box-shadow: 0 9px 18px rgba(0,0,0,.45), inset 0 1px rgba(255,255,255,.07); }
+.poker-seat.acting .seat-bubble { border-color: #f0c760; background: linear-gradient(145deg, #4c3b1f, #1c2118); box-shadow: 0 0 0 3px rgba(240, 199, 96, .18), 0 11px 24px rgba(0,0,0,.46); }
+.seat-bet { border-color: rgba(241, 203, 117, .32); background: rgba(13, 29, 20, .82); }
+.poker-action-grid button { min-height: 45px; border-radius: 10px; box-shadow: inset 0 1px rgba(255,255,255,.1), 0 8px 15px rgba(0,0,0,.26); }
+.poker-action-grid .raise, .poker-action-grid .call { border-color: #dbb866; background: linear-gradient(180deg, #cda554, #8f672c); color: #15130f; }
+.poker-action-grid .fold { border-color: rgba(255,255,255,.2); background: linear-gradient(180deg, #26343a, #101b20); }
+.poker-action-grid .all-in { border-color: #bd5d54; background: linear-gradient(180deg, #873f38, #4b2020); }
+
+/* The wide surfaces remain the primary composition. On a narrow landscape
+   phone, keep the table visible and only compress the command rail; no core
+   information depends on a scroll container. */
+@media (orientation: landscape) and (max-width: 699px) {
+  .game-header, .poker-header { border-radius: 11px; }
+  .player-nameplate { min-height: 36px; padding: 4px 5px; border-left-width: 2px; }
+  .player-nameplate-seat { font-size: 7px; }
+  .player-nameplate-copy strong { font-size: 8px; }
+  .player-nameplate-copy small, .player-nameplate-copy em, .player-nameplate-badge { font-size: 6px; }
+  .avalon-council-table, .guandan-screen > .guandan-seat-table, .timebomb-screen > .timebomb-workbench, .crossfire-screen > .crossfire-intel-map, .goodcop-screen > .goodcop-case-board, .poker-table { border-width: 2px; box-shadow: inset 0 0 0 1px rgba(238, 203, 125, .12), inset 0 0 44px rgba(0,0,0,.62), 0 15px 28px rgba(0,0,0,.38); }
+  .avalon-table-center { width: min(158px, 35%); padding: 7px 6px; }
+  .avalon-table-center > strong { font-size: 12px; }
+  .guandan-seat-table .guandan-center { min-width: 106px; padding: 7px 5px; }
+  .timebomb-workbench::before, .goodcop-case-board::before { inset: 5px; }
+  .crossfire-intel-map::after { width: 12px; height: 12px; }
+  .dice-tray::before { inset: 5px; }
+  .poker-table { border-width: 5px; }
+}
+
+@media (orientation: landscape) and (max-width: 699px) and (max-height: 420px) {
+  .game-header, .poker-header { min-height: 32px; padding-block: 2px; }
+  .new-game-action-card, .new-game-private, .guandan-hand-panel, .poker-actions { box-shadow: 0 7px 13px rgba(0,0,0,.22), inset 0 1px rgba(255,255,255,.05); }
+  .primary-button, .secondary-button, .danger-button, .success-button, .poker-action-grid button { min-height: 32px; }
 }

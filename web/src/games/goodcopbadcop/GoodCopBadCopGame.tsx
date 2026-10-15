@@ -20,6 +20,7 @@ export function GoodCopBadCopGame({ room, session, view, send, onLeave }: Props)
   const [showRules, setShowRules] = useState(false)
   const isHost = room.hostId === session?.playerId
   const playerName = (id: string) => room.players.find(player => player.id === id)?.nickname ?? '玩家'
+  const shortName = (name: string) => name.trim().slice(0, 4) || '玩家'
   const roleName = (role: IntegrityType) => integrityTypeNames[role]
   const teamName = (team: GoodCopTeam) => goodCopTeamNames[team]
   const activeTargets = view.targetIds
@@ -42,14 +43,14 @@ export function GoodCopBadCopGame({ room, session, view, send, onLeave }: Props)
       <div className="goodcop-case-board">
         <div className="goodcop-case-status"><span>案件行动</span><strong>{view.public.phase === 'ACTION_RESOLVE' ? '处理射击' : `当前：${currentName}`}</strong>{view.public.gunHolder ? <small><Crosshair size={13} />{playerName(view.public.gunHolder)} 持枪{view.public.aimTarget ? ` → ${playerName(view.public.aimTarget)}` : ''}</small> : <small>枪械尚未被领取</small>}</div>
         <div className="goodcop-dossier-grid" aria-label="玩家公开档案">
-          {room.players.map(player => {
+          {room.players.map((player, playerIndex) => {
             const revealed = view.public.revealedIntegrity[player.id] ?? []
             const hidden = view.public.hiddenIntegrityCounts[player.id] ?? 0
             const eliminated = view.public.eliminated.includes(player.id)
             const wounded = view.public.wounded.includes(player.id)
             const selectable = canChooseTarget && activeTargets.includes(player.id)
             return <button type="button" className={`goodcop-dossier ${player.id === view.public.currentPlayerId ? 'current' : ''} ${player.id === targetId ? 'selected' : ''} ${eliminated ? 'eliminated' : ''} ${player.connected ? '' : 'offline'}`} disabled={!selectable} onClick={() => chooseTarget(player.id)} key={player.id}>
-              <header><span>{player.nickname.slice(0, 1)}</span><div><strong>{player.id === session?.playerId ? '你' : player.nickname}</strong><small>{eliminated ? '已淘汰' : wounded ? '受伤' : player.id === view.public.gunHolder ? '持枪' : player.id === view.public.currentPlayerId ? '当前行动' : '在场'}</small></div>{view.public.equipmentCounts[player.id] ? <b><Shield size={11} />{view.public.equipmentCounts[player.id]}</b> : null}</header>
+              <header><span className="dossier-seat-no">{String(playerIndex + 1).padStart(2, '0')}</span><div><strong title={player.nickname}>{player.id === session?.playerId ? '你' : shortName(player.nickname)}</strong><small>{eliminated ? '已淘汰' : wounded ? '受伤' : player.id === view.public.gunHolder ? '持枪' : player.id === view.public.currentPlayerId ? '当前行动' : '在场'}</small></div>{view.public.equipmentCounts[player.id] ? <b><Shield size={11} />{view.public.equipmentCounts[player.id]}</b> : null}</header>
               <div className="public-integrity-row">{revealed.map((role, index) => <i className="revealed" key={`revealed-${index}`}>{roleName(role)}</i>)}{Array.from({ length: hidden }, (_, index) => <i key={`hidden-${index}`}>?</i>)}</div>
               {view.public.aimTarget === player.id ? <em><Target size={11} />被瞄准</em> : null}
             </button>

@@ -1,6 +1,8 @@
 import { Check, CircleHelp, Crown, Eye, History, RotateCcw, Shield, Swords, X } from 'lucide-react'
+import type { CSSProperties } from 'react'
 import { useEffect, useState } from 'react'
-import { PlayerRing } from '../../components/PlayerRing'
+import { PlayerNameplate } from '../../components/PlayerNameplate'
+import { LandscapeHint } from '../../components/LandscapeHint'
 import { RoomBackButton } from '../../components/RoomBackButton'
 import type { AvalonView, RoomView, Session } from '../../types'
 import { avalonRoleNames, evilAvalonRoles } from './avalonData'
@@ -32,6 +34,7 @@ export function AvalonGame({ room, session, view, send, onLeave }: Props) {
           <button aria-label="查看游戏介绍" onClick={() => setShowIntro(true)}><CircleHelp size={18} /></button>
         </div>
       </header>
+      <LandscapeHint />
       <div className="mission-rail" aria-label="任务进度">
         {[0, 1, 2, 3, 4].map(index => {
           const result = completed[index]
@@ -43,25 +46,54 @@ export function AvalonGame({ room, session, view, send, onLeave }: Props) {
       <div className="proposal-meta"><span><Crown size={16} />队长：{playerName(view.public.leaderId)}</span><span>本轮投票 {view.public.currentProposal}/5 · 累计 {view.public.totalVoteCount}</span></div>
       <div className="mission-counts"><span>任务成功 <strong>{successCount}</strong></span><span>任务失败 <strong>{failureCount}</strong></span><span>连续否决 <strong>{view.public.proposalRejects}</strong></span></div>
 
-      <PlayerRing className="game-player-ring avalon-player-ring" ariaLabel="阿瓦隆玩家座位" center={<div className="table-center"><Shield /><strong>{phaseLabel(view.public.phase)}</strong><span>{view.public.teamSize} 人任务</span></div>} players={room.players.map(player => {
-        const selected = (view.canSelectTeam ? team : view.public.selectedTeam).includes(player.id)
-        return { id: player.id, nickname: player.nickname, isMe: player.id === session?.playerId, connected: player.connected, selected, disabled: !view.canSelectTeam, status: player.id === view.public.leaderId ? '队长' : '玩家', badge: selected ? '已选' : undefined, onClick: () => toggle(player.id) }
-      })} />
+      <div className="avalon-board-layout">
+        <section className="avalon-council-table" aria-label="阿瓦隆圆桌议会">
+          <div className="avalon-table-rings" aria-hidden="true"><i /><i /></div>
+          <div className="avalon-table-center">
+            <Shield size={26} />
+            <span>当前阶段</span>
+            <strong>{phaseLabel(view.public.phase)}</strong>
+            <small>{view.public.teamSize} 人任务 · 第 {view.public.currentProposal} 次提案</small>
+            {view.public.selectedTeam.length ? <div>{view.public.selectedTeam.map(playerName).join(' · ')}</div> : null}
+          </div>
+          {room.players.map((player, index) => {
+            const selected = (view.canSelectTeam ? team : view.public.selectedTeam).includes(player.id)
+            const angle = (index / room.players.length) * 360 + 90
+            return <PlayerNameplate
+              key={player.id}
+              index={index}
+              name={player.id === session?.playerId ? '你' : player.nickname}
+              status={player.id === view.public.leaderId ? '任务队长' : selected ? '已进入提案队伍' : '等待提案'}
+              badge={player.id === view.public.leaderId ? <Crown size={13} /> : selected ? '已选' : undefined}
+              className="avalon-council-seat"
+              style={{ '--seat-angle': `${angle}deg` } as CSSProperties}
+              current={player.id === view.public.leaderId}
+              selected={selected}
+              offline={!player.connected}
+              disabled={!view.canSelectTeam}
+              onClick={view.canSelectTeam ? () => toggle(player.id) : undefined}
+            />
+          })}
+        </section>
 
-      <div className={`identity-panel ${isEvil ? 'evil' : ''}`}>
-        <div className="identity-icon">{isEvil ? <Swords /> : <Eye />}</div>
-        <div><span>你的身份</span><h2>{avalonRoleNames[view.myRole]}</h2>
-          <p>{view.knowledge.length ? view.knowledge.map(k => `${playerName(k.playerId)}：${k.hint}`).join(' · ') : '谨慎判断其他玩家的阵营。'}</p>
-        </div>
-      </div>
+        <aside className="avalon-command-panel">
+          <div className={`identity-panel ${isEvil ? 'evil' : ''}`}>
+            <div className="identity-icon">{isEvil ? <Swords /> : <Eye />}</div>
+            <div><span>仅你可见 · 身份情报</span><h2>{avalonRoleNames[view.myRole]}</h2>
+              <p>{view.knowledge.length ? view.knowledge.map(k => `${playerName(k.playerId)}：${k.hint}`).join(' · ') : '谨慎判断其他玩家的阵营。'}</p>
+            </div>
+          </div>
 
-      <div className="game-actions">
-        {view.canSelectTeam ? <button className="primary-button" disabled={team.length !== view.public.teamSize} onClick={() => send('avalon:select_team', { team })}>确认队伍 {team.length}/{view.public.teamSize}</button> : null}
-        {view.canVote ? <div className="split-actions"><button className="danger-button" onClick={() => send('avalon:vote', { approve: false })}><X />反对</button><button className="success-button" onClick={() => send('avalon:vote', { approve: true })}><Check />赞成</button></div> : null}
-        {view.canSubmitMission ? <div className="split-actions"><button className="success-button" onClick={() => send('avalon:mission', { success: true })}><Check />任务成功</button>{isEvil ? <button className="danger-button" onClick={() => send('avalon:mission', { success: false })}><X />任务失败</button> : null}</div> : null}
-        {view.canAssassinate ? <div className="assassinate-panel"><strong>选择要刺杀的梅林</strong><div>{room.players.filter(p => p.id !== session?.playerId).map(p => <button key={p.id} onClick={() => send('avalon:assassinate', { targetId: p.id })}>{p.nickname}</button>)}</div></div> : null}
-        {!view.canSelectTeam && !view.canVote && !view.canSubmitMission && !view.canAssassinate && view.public.phase !== 'FINISHED' ? <p className="waiting-action">等待其他玩家操作…</p> : null}
-        {view.public.phase === 'FINISHED' ? <div className="result-panel"><h2>{view.public.winner === 'GOOD' ? '好人阵营获胜' : '邪恶阵营获胜'}</h2><p>{view.public.endReason}</p>{isHost ? <button className="primary-button" onClick={() => send('game:restart')}>返回大厅，重新准备</button> : null}</div> : null}
+          <div className="game-actions avalon-action-dock">
+            <header><span>你的操作</span><strong>{view.canSelectTeam ? `选择 ${view.public.teamSize} 名队员` : view.canVote ? '秘密表决队伍' : view.canSubmitMission ? '秘密提交任务结果' : view.canAssassinate ? '刺客最终行动' : '等待同步'}</strong></header>
+            {view.canSelectTeam ? <button className="primary-button" disabled={team.length !== view.public.teamSize} onClick={() => send('avalon:select_team', { team })}>确认队伍 {team.length}/{view.public.teamSize}</button> : null}
+            {view.canVote ? <div className="split-actions"><button className="danger-button" onClick={() => send('avalon:vote', { approve: false })}><X />反对</button><button className="success-button" onClick={() => send('avalon:vote', { approve: true })}><Check />赞成</button></div> : null}
+            {view.canSubmitMission ? <div className="split-actions"><button className="success-button" onClick={() => send('avalon:mission', { success: true })}><Check />任务成功</button>{isEvil ? <button className="danger-button" onClick={() => send('avalon:mission', { success: false })}><X />任务失败</button> : null}</div> : null}
+            {view.canAssassinate ? <div className="assassinate-panel"><strong>选择要刺杀的梅林</strong><div>{room.players.filter(p => p.id !== session?.playerId).map(p => <button key={p.id} onClick={() => send('avalon:assassinate', { targetId: p.id })}>{p.nickname}</button>)}</div></div> : null}
+            {!view.canSelectTeam && !view.canVote && !view.canSubmitMission && !view.canAssassinate && view.public.phase !== 'FINISHED' ? <p className="waiting-action">等待其他玩家操作…</p> : null}
+            {view.public.phase === 'FINISHED' ? <div className="result-panel"><h2>{view.public.winner === 'GOOD' ? '好人阵营获胜' : '邪恶阵营获胜'}</h2><p>{view.public.endReason}</p>{isHost ? <button className="primary-button" onClick={() => send('game:restart')}>返回大厅，重新准备</button> : null}</div> : null}
+          </div>
+        </aside>
       </div>
       {showHistory ? <div className="modal-backdrop" role="presentation" onClick={() => setShowHistory(false)}>
         <section className="game-modal history-modal" role="dialog" aria-modal="true" aria-label="投票与任务历史" onClick={event => event.stopPropagation()}>

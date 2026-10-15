@@ -2,6 +2,7 @@ import { CircleHelp, Radio, Send, SkipForward, Users } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { GameRulesModal } from '../../components/GameRulesModal'
 import { LandscapeHint } from '../../components/LandscapeHint'
+import { PlayerNameplate } from '../../components/PlayerNameplate'
 import { RoomBackButton } from '../../components/RoomBackButton'
 import type { GuandanCard, GuandanCombinationType, GuandanView, RoomView, Session } from '../../types'
 
@@ -73,12 +74,17 @@ export function GuandanGame({ room, session, view, send, onLeave }: Props) {
           {view.public.lastPlay ? <div className="last-play"><small>{playerName(view.public.lastPlay.playerId)} · {combinationLabel(view.public.lastPlay.type)}</small><div>{view.public.lastPlay.cards.map(card => <GuandanCardView card={card} small key={card.id} />)}</div></div> : <small>新一轮</small>}
           {view.public.lastEvent ? <small className="guandan-event">{view.public.lastEvent}</small> : null}
         </div>
-        {room.players.map((player, index) => <div className={`guandan-seat ${seatPosition(index)} ${player.id === view.public.currentPlayerId ? 'current' : ''} ${player.connected ? '' : 'offline'} ${view.public.passedPlayerIds.includes(player.id) ? 'passed' : ''}`} key={player.id}>
-          <span className="guandan-seat-avatar">{player.nickname.slice(0, 1)}</span>
-          <strong>{player.id === session?.playerId ? '你' : player.nickname}</strong>
-          <small>{teamLabel(index)} · {view.public.handSizes[player.id] ?? 0} 张</small>
-          {rankingByPlayer.has(player.id) ? <b>第 {rankingByPlayer.get(player.id)} 名</b> : view.public.passedPlayerIds.includes(player.id) ? <b>已过牌</b> : player.id === view.public.currentPlayerId ? <b>当前行动</b> : null}
-        </div>)}
+        {room.players.map((player, index) => <PlayerNameplate
+          key={player.id}
+          index={index}
+          name={player.id === session?.playerId ? '你' : player.nickname}
+          status={`${teamLabel(index)} · ${view.public.handSizes[player.id] ?? 0} 张`}
+          detail={rankingByPlayer.has(player.id) ? `第 ${rankingByPlayer.get(player.id)} 名` : view.public.passedPlayerIds.includes(player.id) ? '已过牌' : player.id === view.public.currentPlayerId ? '当前行动' : '等待出牌'}
+          badge={player.id === session?.playerId ? '本人' : undefined}
+          className={`guandan-seat ${seatPosition(index)} ${view.public.passedPlayerIds.includes(player.id) ? 'passed' : ''}`}
+          current={player.id === view.public.currentPlayerId}
+          offline={!player.connected}
+        />)}
       </div>
 
       <section className="guandan-hand-panel">

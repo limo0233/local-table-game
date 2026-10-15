@@ -2,6 +2,8 @@ import { CircleHelp, Scissors, Shield, Bomb, RotateCcw } from 'lucide-react'
 import type { CSSProperties } from 'react'
 import { useState } from 'react'
 import { GameRulesModal } from '../../components/GameRulesModal'
+import { LandscapeHint } from '../../components/LandscapeHint'
+import { PlayerNameplate } from '../../components/PlayerNameplate'
 import { RoomBackButton } from '../../components/RoomBackButton'
 import { timeBombRoleNames } from '../roleNames'
 import type { RoomView, Session, TimeBombView, TimeBombWire } from '../../types'
@@ -34,15 +36,27 @@ export function TimeBombGame({ room, session, view, send, onLeave }: Props) {
         <div className="room-header-leading"><RoomBackButton isHost={isHost} onLeave={onLeave} /><div><h1>TimeBomb</h1><span>房间 {room.roomId}</span></div></div>
         <div className="game-header-actions"><span className="new-game-phase">第 {view.public.round} 轮</span><button type="button" aria-label="TimeBomb规则" onClick={() => setShowRules(true)}><CircleHelp size={17} /></button></div>
       </header>
+      <LandscapeHint />
 
       <div className="timebomb-workbench">
         <div className="timebomb-wire-grid" aria-label="玩家线路盒">
           {room.players.map(player => {
             const selectable = view.canCut && view.targetIds.includes(player.id)
-            return <button type="button" className={`timebomb-wire-box ${player.id === view.public.currentCutterId ? 'cutter' : ''} ${player.id === targetId ? 'selected' : ''} ${player.connected ? '' : 'offline'}`} disabled={!selectable} onClick={() => chooseTarget(player.id)} key={player.id}>
-              <span>{player.nickname.slice(0, 1)}</span><strong>{player.id === session?.playerId ? '你' : player.nickname}</strong>
-              <small>{player.id === view.public.currentCutterId ? '持剪' : `${view.public.wireCountsByPlayer[player.id] ?? 0} 条线路`}</small>
-            </button>
+            const index = room.players.findIndex(item => item.id === player.id)
+            return <PlayerNameplate
+              key={player.id}
+              index={index}
+              name={player.id === session?.playerId ? '你' : player.nickname}
+              status={`${view.public.wireCountsByPlayer[player.id] ?? 0} 条未知线路`}
+              detail={player.id === view.public.currentCutterId ? '本轮持剪者' : player.id === targetId ? '已选择目标' : '线路盒待检'}
+              badge={player.id === view.public.currentCutterId ? <Scissors size={12} /> : undefined}
+              className="timebomb-wire-box"
+              current={player.id === view.public.currentCutterId}
+              selected={player.id === targetId}
+              offline={!player.connected}
+              disabled={!selectable}
+              onClick={selectable ? () => chooseTarget(player.id) : undefined}
+            />
           })}
         </div>
         <div className="timebomb-console">

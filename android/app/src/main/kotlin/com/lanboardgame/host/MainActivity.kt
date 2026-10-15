@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
 import android.webkit.JavascriptInterface
@@ -37,6 +38,7 @@ class MainActivity : Activity() {
             settings.cacheMode = WebSettings.LOAD_DEFAULT
             settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
             addJavascriptInterface(StartupBridge(), "HostStartup")
+            addJavascriptInterface(UiBridge(), "HostUi")
             webViewClient = object : WebViewClient() {
                 override fun onReceivedError(view: WebView, request: WebResourceRequest, error: WebResourceError) {
                     if (request.isForMainFrame && request.url.host in setOf("127.0.0.1", "localhost")) {
@@ -112,6 +114,19 @@ class MainActivity : Activity() {
                 startForegroundService(Intent(this@MainActivity, GameServerService::class.java))
                 showStartup("正在重新启动本地服务器…")
                 waitForServer()
+            }
+        }
+    }
+
+    private inner class UiBridge {
+        @JavascriptInterface
+        fun setOrientation(mode: String) {
+            runOnUiThread {
+                requestedOrientation = when (mode) {
+                    "landscape" -> ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
+                    "portrait" -> ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT
+                    else -> ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+                }
             }
         }
     }

@@ -41,7 +41,7 @@ export function PokerGame({ room, session, view, send, onLeave }: Props) {
             const player = room.players.find(item => item.id === seat.id)
             return <div className={`poker-seat ${seat.id === view.public.actingPlayerId ? 'acting' : ''} ${seat.folded ? 'folded' : ''}`} style={positions[index]} key={seat.id}>
               <div className="seat-marks">{seat.isDealer ? <i>D</i> : null}{seat.isSmallBlind ? <b>SB</b> : null}{seat.isBigBlind ? <b>BB</b> : null}</div>
-              <div className="seat-bubble"><strong>{seat.id === session?.playerId ? '你' : player?.nickname ?? '玩家'}</strong><span>{seat.chips} 筹码</span><small>{seat.folded ? '已弃牌' : seat.allIn ? '全下' : seat.id === view.public.actingPlayerId ? '当前行动' : '等待'}</small></div>
+              <div className="seat-bubble"><b className="poker-seat-index">{String(index + 1).padStart(2, '0')}</b><strong title={player?.nickname ?? '玩家'}>{seat.id === session?.playerId ? '你' : (player?.nickname ?? '玩家').slice(0, 4)}</strong><span>{seat.chips} 筹码</span><small>{seat.folded ? '已弃牌' : seat.allIn ? '全下' : seat.id === view.public.actingPlayerId ? '当前行动' : '等待'}</small></div>
               {seat.streetBet > 0 ? <span className="seat-bet">下注 {seat.streetBet}</span> : null}
               <div className="seat-cards">{seat.revealedCards ? seat.revealedCards.map((card, i) => <PlayingCard card={card} small key={i} />) : seat.id !== session?.playerId ? <><PlayingCard hidden small /><PlayingCard hidden small /></> : null}</div>
             </div>
